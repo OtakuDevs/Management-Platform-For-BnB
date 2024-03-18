@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   webapp:
-    image: kaiserdmc/skeppsgardenbnb:1.0
+    image: kaiserdmc/skeppsgardenbnb:0.9
     container_name: skeppsgardenbnb
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
