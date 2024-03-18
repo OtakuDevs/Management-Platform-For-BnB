@@ -1,0 +1,47 @@
+@{
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Bookings Overview";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print"/>
+@* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> *@
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/admin-area-index-customization.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/admin-area-calendar-customization.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/admin-area-partial-view.css" class="rel">
+
+<div class="admin-buttons-container">
+    <hr class="solid">
+    <div class="left-right-divider">
+        <h2>Dashboard</h2>
+    </div>
+    <hr class="solid">
+    <div class="admin-buttons-wrapper">
+        <button id="btnRequests" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("RequestedRooms", "AdminPanel", new { area = "Admin" })')">Requests</button>
+        <button id="btnReservations" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Reservations", "AdminPanel", new { area = "Admin" })')">Reservations</button>
+        <button id="btnCalendar" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Index", "CalendarAdmin", new { area = "Admin" })')">Calendar</button>
+        <button id="btnBlock" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("BlockRoom", "AdminPanel", new { area = "Admin" })')">Block Rooms</button>
+        <button id="btnEvents" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Events", "AdminPanel", new { area = "Admin" })')">Events</button>
+        <button id="btnHyperlinks" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("HyperLinks", "AdminPanel", new { area = "Admin" })')">Hyperlinks</button>
+        <button id="btnEasyAdmin" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Index", "EasyAdmin", new { area = "Admin" })')">Misc</button>
+        <button id="btnExcel" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("ExcelDownload", "AdminPanel", new { area = "Admin" })')">Excel Export</button>
+    </div>
+    <div id="partialViewContainer" class="col-md-9"></div>
+</div>
+
+<!-- Add FullCalendar container -->
+<div id="calendar-container">
+    <!-- THE CALENDAR -->
+    <div id="calendar"></div>
+</div>
+<div class="modal" id="eventModal"></div>
+
+@section Scripts {
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+    <script src="~/js/custom/admin-index-on-load.js"></script>
+    <script type="text/javascript" src="~/js/custom/calendar-loader.js"></script>
+}

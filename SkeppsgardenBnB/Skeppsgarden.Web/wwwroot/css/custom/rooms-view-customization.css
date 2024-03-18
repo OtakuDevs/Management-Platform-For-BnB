@@ -1,0 +1,326 @@
+.rooms-view-header {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: end;
+    width: 100%;
+    height: 40vh;
+    padding: 1rem 0 0.6rem 2rem;
+    text-align: left;
+    font-size: 1.1em;
+    margin-bottom: 2rem;
+    border: 2px solid var(--color-nav-background);
+    background: url("../../images/site/rustic-floral.jpg") top;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.rooms-view-header-wrapper {
+    position: absolute;
+    left: 15%;
+    color: var(--color-text-primary);
+    text-shadow: var(--text-shadow-black);
+    width: 45%;
+    padding: 1rem;
+    backdrop-filter: blur(3px);
+    background-color: var(--color-opacity-light-1);
+    border: 2px solid var(--color-opacity-light-3);
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-light);
+}
+
+
+.rooms-view-header > p:nth-child(3) {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.rooms-view-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 94%;
+    height: auto;
+    margin: 0 auto 2rem auto;
+    padding: 1.5rem;
+    border: 2px solid var(--color-nav-background);
+    border-radius: var(--border-radius-4);
+    background: rgb(203, 208, 185);
+    background: linear-gradient(90deg, rgba(203, 208, 185, 1) 15%, rgba(228, 231, 218, 1) 50%, rgba(192, 198, 169, 1) 85%);
+}
+
+.room-view-card {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-nav-background);
+    border-radius: var(--border-radius-4);
+    background-color: #dbdde1;
+    color: var(--color-black);
+    position: relative;
+}
+
+.room-view-image {
+    display: flex;
+    width: 100%;
+    height: auto;
+    border-radius: 5px 0 0 5px;
+}
+
+.badge-success{
+    color: var(--color-button-background) !important;
+    background-color:#dee2d2;
+    border: 1px solid;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.badge-danger{
+    color: #A61001 !important;
+    background-color:#FFEBE9;
+    border: 1px solid;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+
+}
+
+.room-view-details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    background-color: #dbdde1;
+}
+
+.room-view-details p {
+    font-size: 15px;
+    padding: 0;
+}
+
+.room-view-details i {
+    display: inline-block;
+    width: 30px;
+    margin: 0;
+    padding: 10px 10px 10px 0;
+}
+
+.room-view-button-details {
+    display: flex;
+    margin-top: auto;
+}
+
+.room-view-button-details form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Arrow icon at the bookings button */
+.room-view-button-details form i {
+    display: inline-block;
+    width: 30px;
+    margin: 0;
+    padding: 0 8px;
+}
+
+.room-view-image img {
+    width: 100%;
+    height: 260px;
+    border-radius: 5px 0 0 5px;
+}
+
+.property-highlights-container {
+    display: flex;
+    flex-direction: row;
+    width: 94%;
+    height: auto;
+    padding: 1rem;
+    border: 2px solid var(--color-nav-background);
+    border-radius: var(--border-radius-4);
+    background-color: var(--color-lightgray);
+    color: var(--color-black);
+    margin: 0 auto 3rem;
+}
+
+.property-highlights-left {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin-right: 10px;
+    text-align: left;
+}
+
+.property-highlights-right {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    padding: 2rem;
+    text-align: left;
+    color: var(--color-black);
+    background-color: #CBD0B9;
+    border: 2px solid var(--color-nav-background);
+    border-radius: var(--border-radius-4);
+    position: relative;
+    box-shadow: var(--box-shadow-mild-strong);
+}
+
+.property-highlights-overview {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: var(--border-radius-4);
+    box-shadow: var(--box-shadow-mild-strong);
+}
+
+.property-highlights-facilities {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    text-align: left;
+    background-color: rgba(227, 230, 217, 0.5);
+    border-radius: var(--border-radius-4);
+    box-shadow: var(--box-shadow-mild-strong);
+}
+
+.property-highlights-facilities-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 10px 10px 10px 0;
+    text-align: left;
+}
+
+.property-highlights-facilities-items p {
+    font-size: 15px;
+    padding: 0;
+    margin-left: 1rem;
+}
+
+.property-highlights-facilities-items i {
+    display: inline-block;
+    width: 30px;
+    margin: 0;
+    padding: 10px 10px 10px 0;
+}
+
+.property-highlights-right i {
+    display: inline-block;
+    width: 30px;
+    margin: 0;
+    padding: 10px 10px 10px 0;
+}
+
+.property-highlights-right p {
+    margin-left: 1rem;
+}
+
+.property-highlights-right h4 {
+    margin-bottom: 1rem;
+}
+
+.left-right-divider h2 {
+    margin: 0 auto;
+    padding: 0 30px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    text-shadow: var(--text-shadow-black);
+}
+
+/* Mobile view */
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .rooms-view-header {
+        height: 30vh;
+        padding: 1rem 0 0.6rem 1rem;
+    }
+
+    .rooms-view-header-wrapper {
+        width: 80%;
+        left: 10%;
+        text-shadow: var(--text-shadow-outline);
+    }
+
+    .rooms-view-header > p:nth-child(3) {
+        font-size: 18px;
+    }
+
+    .rooms-view-container {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .room-view-card {
+        width: 100%;
+    }
+
+    .room-view-image img {
+        height: 200px;
+    }
+
+    .property-highlights-container {
+        width: 100%;
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    .property-highlights-right {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .property-highlights-overview {
+        padding: 1rem;
+    }
+
+    .property-highlights-facilities {
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    .property-highlights-facilities-items {
+        padding: 10px 10px 10px 0;
+    }
+
+    .property-highlights-facilities-items p {
+        font-size: 14px;
+    }
+
+    .property-highlights-right p {
+        margin-left: 0;
+    }
+
+    .property-highlights-right h4 {
+        margin-bottom: 0.5rem;
+    }
+
+    .left-right-divider {
+        display: flex !important;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}

@@ -1,0 +1,574 @@
+:root {
+    --color-opacity-1: rgba(0, 0, 0, 0.1);
+    --color-opacity-2: rgba(0, 0, 0, 0.2);
+    --color-opacity-3: rgba(0, 0, 0, 0.3);
+    --color-opacity-4: rgba(0, 0, 0, 0.4);
+    --color-opacity-5: rgba(0, 0, 0, 0.5);
+    --color-opacity-6: rgba(0, 0, 0, 0.6);
+    --color-opacity-7: rgba(0, 0, 0, 0.7);
+    --color-opacity-8: rgba(0, 0, 0, 0.8);
+    --color-opacity-9: rgba(0, 0, 0, 0.9);
+    --color-opacity-light-1: rgba(255, 255, 255, 0.1);
+    --color-opacity-light-2: rgba(255, 255, 255, 0.2);
+    --color-opacity-light-3: rgba(255, 255, 255, 0.3);
+    --color-opacity-light-4: rgba(255, 255, 255, 0.4);
+    --color-opacity-light-5: rgba(255, 255, 255, 0.5);
+    --color-opacity-light-6: rgba(255, 255, 255, 0.6);
+    --color-opacity-light-7: rgba(255, 255, 255, 0.7);
+    --color-opacity-light-8: rgba(255, 255, 255, 0.8);
+    --color-opacity-light-9: rgba(255, 255, 255, 0.9);
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray: #888888FF;
+    --color-lightgray: #D3D3D3FF;
+    --color-darkgray: #A9A9A9FF;
+    --color-darkgray-strong: #333333FF;
+    --color-pink: #ca005d;
+    --color-orange: rgba(198, 130, 45, 0.8);
+    --color-brownish-red: #a63d11;
+    --color-darkred: #8B0000FF;
+    --color-danger: rgba(211, 47, 47, 0.7);
+    --color-danger-hover: rgba(211, 47, 47, 1);
+    --color-success: rgba(53, 124, 56, 0.7);
+    --color-success-hover: rgba(53, 124, 56, 1);
+    --color-nav-background: #514B23;
+    --color-nav-color: lightgray;
+    --color-nav-hover: goldenrod;
+    --color-divider: #818360;
+    --color-button-background: #656839;
+    --color-background-glass-light: rgba(255, 255, 255, 0.2);
+    --color-background-glass-dark: rgba(0, 0, 0, 0.2);
+    --color-text-primary: lightgoldenrodyellow;
+    --color-light-yellow: #fcffd7;
+    
+    --border-radius-4: 4px;
+    --border-radius-8: 8px;
+    --border-radius-16: 16px;
+    --text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
+    --text-shadow-light: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    --text-shadow-black: 2px 2px 2px #000000;
+    --text-shadow-outline:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000; /* Outline effect */
+    
+    --box-shadow-all-sides-inset:
+            inset 8px 0 8px rgba(0, 0, 0, 0.3), /* Right Shadow */
+            inset -7px 0 8px rgba(0, 0, 0, 0.3), /* Left shadow */
+            inset 0 -7px 8px rgba(0, 0, 0, 0.3), /* Top shadow */
+            inset 0 7px 8px rgba(0, 0, 0, 0.3); /* Bottom shadow */
+    
+    --box-shadow-all-sides:
+            8px 0 8px rgba(0, 0, 0, 0.2), /* Right Shadow */ 
+            -7px 0 8px rgba(0, 0, 0, 0.2), /* Left shadow */
+            0 -7px 8px rgba(0, 0, 0, 0.2), /* Top shadow */
+            0 7px 8px rgba(0, 0, 0, 0.2); /* Bottom shadow */
+    --box-shadow-all-sides-strong:
+             8px 0 8px rgba(0, 0, 0, 0.4), /* Right Shadow */
+            -7px 0 8px rgba(0, 0, 0, 0.4), /* Left shadow */ 
+            0 -7px 8px rgba(0, 0, 0, 0.4), /* Top shadow */
+             0 7px 8px rgba(0, 0, 0, 0.4); /* Bottom shadow */
+    --box-shadow-light:
+            2px 2px 4px rgba(0, 0, 0, 0.25);
+    --box-shadow-mild:
+            4px 4px 8px rgba(0, 0, 0, 0.5);
+    --box-shadow-mild-strong:
+            7px 7px 5px rgba(0, 0, 0, 0.4);
+    --box-shadow-strong:
+            7px 7px 5px rgba(0, 0, 0, 0.8);
+}
+
+
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Remove if needed later on - css for black labels in Login/Register */
+.form-label {
+    color: var(--color-black);
+}
+
+.form-floating label {
+    color: var(--color-black);
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+main {
+    flex: 1;
+    background: linear-gradient(90deg, rgba(101, 104, 57, 1) 13%, rgba(144, 150, 76, 1) 48%, rgba(101, 104, 57, 1) 82%);
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    font-family: "Bahnschrift", serif;
+    font-size: 1.2rem;
+    text-size-adjust:  100% !important;
+    color: var(--color-black);
+    background: rgb(191, 189, 155);
+    background: linear-gradient(90deg, rgba(191, 189, 155, 1) 15%, rgba(223, 222, 205, 1) 50%, rgba(191, 189, 155, 1) 85%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/*!* SECTION: FOOTER *!*/
+
+/* Sets margin-top and background-color of the footer */
+footer {
+    margin-top: auto;
+    border-top: 1px solid lightgoldenrodyellow;
+    background-color: var(--color-nav-background);
+
+    /* Sets padding of the footer */
+
+    & section {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    /* Sets some margin on the icons in the footer */
+
+    & #title-icon {
+        margin-right: 5px;
+    }
+
+    /* Removes any decoration on the links from href*/
+
+    & .container a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    & h5 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--color-nav-color);
+    }
+
+    & h6 {
+        color: var(--color-nav-hover);
+    }
+
+    & a, p, button {
+        font-weight: 400;
+        color: var(--color-nav-color);
+    }
+
+    & .footer-row-element a, .footer-row-element button {
+        padding: 0 !important;
+        margin-bottom: 1rem;
+        font-weight: 400;
+        color: var(--color-nav-color) !important;
+    }
+
+    & a:hover, p:hover, button:hover, .footer-row-element a:hover, .footer-row-element button:hover {
+        transform: skew(-15deg);
+        font-weight: 600;
+        color: var(--color-nav-hover) !important;
+    }
+}
+
+/* Sets some  margin on the dev link in the footer */
+body > footer > div > a {
+    margin-left: 5px;
+}
+
+/* Removes the transform on hover of address and phone number */
+body > footer > section > div > div > div.col-md-4.col-lg-3.col-xl-3.mb-md-0.mb-4 > p:nth-child(2),
+body > footer > section > div > div > div.col-md-4.col-lg-3.col-xl-3.mb-md-0.mb-4 > p:nth-child(3) {
+    color: var(--color-nav-color) !important;
+    font-weight: 400 !important;
+    transform: none;
+}
+
+
+/* General button styling */
+.open-button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 14px 14px;
+    width: 100%;
+    border: none;
+    border-radius: var(--border-radius-8);
+    opacity: 0.8;
+    font-size: 1.3rem;
+    color: var(--color-white);
+    background-color: var(--color-button-background) !important;
+    box-shadow: var(--box-shadow-strong);
+    cursor: pointer;
+}
+
+.open-button:hover {
+    opacity: 1;
+    transition: 0.3s;
+    transform: scale(0.95);
+}
+
+/*!* SECTION: NAVBAR *!*/
+
+.navbar-custom {
+    background-color: var(--color-nav-background) !important;
+
+    & img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    /* Reset the navbar brand padding and margin */
+
+    & .navbar-brand {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Add some padding between the links */
+
+    & li {
+        padding: 0.5rem 0.5rem;
+    }
+
+    & a {
+        position: relative;
+        font-size: 20px;
+        text-align: center;
+        text-decoration: none !important;
+        color: var(--color-nav-color) !important;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            color: var(--color-nav-hover) !important;
+            transform: scale(1.2);
+        }
+
+    }
+
+    .custom-underline::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--color-nav-hover);
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.4s ease-in-out 0s;
+    }
+
+    .custom-underline:hover::before {
+        visibility: visible;
+        transform: scaleX(1);
+    }
+
+    /* The margin-left auto moves the selected li element to the right while pushing all the elements to the right of it with it*/
+
+    li#activities {
+        margin-left: auto;
+    }
+
+    & .topnav-right {
+        margin-right: 1.5rem;
+
+        & .navbar-dropdown-button {
+            position: relative;
+            padding: 10px;
+            border: none;
+            color: var(--color-nav-color);
+            background-color: transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        & .navbar-dropdown-content {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            min-width: 129px;
+            padding: 8px 0;
+            background-color: rgba(81, 75, 35, 0.9);
+            overflow-x: hidden;
+
+            & a {
+                text-align: left;
+                padding: 12px 20px;
+            }
+
+            /* Just to push the first link down a bit so its more visible */
+
+            & a:first-child {
+                margin-top: 1rem;
+            }
+        }
+
+        &:hover {
+            & .navbar-dropdown-button {
+                color: var(--color-nav-hover);
+                transform: scale(1.2);
+            }
+
+            & .navbar-dropdown-content {
+                display: block;
+            }
+        }
+    }
+
+    #nav-bar-notification {
+        margin-right: 0.5rem;
+    }
+}
+
+
+/* STICKY SOCIAL BAR */
+/* Fixed/sticky icon bar (vertically aligned 50% from the top of the screen) */
+.icon-bar {
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    right: 0.1%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    /* Style the icon bar links */
+
+    & a {
+        display: block;
+        padding: 14px;
+        font-size: 20px;
+        text-align: center;
+        color: var(--color-white);
+        opacity: 1;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateX(-10px) scale(1.2);
+        }
+    }
+}
+
+.facebook {
+    background: #3B5998;
+    color: var(--color-white);
+}
+
+.twitter {
+    background: black;
+    color: var(--color-white);
+}
+
+.whatsapp {
+    background: #59c753;
+    color: var(--color-white);
+}
+
+.linkedin {
+    background: #007bb5;
+    color: var(--color-white);
+}
+
+.email {
+    background: indianred;
+    color: var(--color-white);
+}
+
+/* Scroll to top button */
+
+.scroll-to-top {
+    position: fixed;
+    top: 90%;
+    right: 0.9%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 9999;
+    width: 58px;
+    height: 58px;
+    margin-top: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    backdrop-filter: blur(3px);
+    background-color: var(--color-background-glass-light);
+    border: 1px solid var(--color-background-glass-light);
+    box-shadow: var(--box-shadow-light);
+}
+
+.scroll-to-top i {
+    padding: 0;
+    margin: 0.8rem 0 0 0;
+    font-size: 2rem;
+    color: var(--color-text-primary);
+}
+
+/* Solid border */
+hr.solid {
+    margin: 3rem auto;
+    border-top: 3px solid lightgrey !important;
+}
+
+/* Two line left and right divider for title */
+.left-right-divider {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #222;
+    text-transform: uppercase;
+}
+
+.left-right-divider:before,
+.left-right-divider:after {
+    content: " ";
+    display: block;
+    border-bottom: 2px solid var(--color-divider);
+    border-top: 2px solid var(--color-divider);
+    height: 25px;
+    background-color: transparent;
+}
+
+
+/* Paragraph divider*/
+.paragraph-divider {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    align-items: center;
+    position: relative;
+    margin: 2rem;
+    text-align: center;
+    font-size: 4rem;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        content: " ";
+        display: block;
+        border-bottom: 2px solid var(--color-divider);
+        border-top: 2px solid var(--color-divider);
+        height: 25px;
+        background-color: transparent;
+    }
+
+    &::before {
+        margin-right: 2rem;
+    }
+
+    &::after {
+        margin-left: 2rem;
+    }
+}
+
+
+/* Cat At Footer */
+.cat-container {
+    position: relative; /* Make the container position relative */
+    width: 120px;
+    height: 120px;
+    margin-bottom: -3rem;
+
+    & .cat {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    & .cat-shadow {
+        position: absolute;
+        bottom: 0; /* Adjust the distance of the shadow from the image */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; /* Adjust the width of the shadow */
+        height: 30px; /* Adjust the height of the shadow */
+        border-radius: 50%; /* Make it an ellipse */
+        background-color: var(--color-opacity-3); /* Adjust the color and opacity of the shadow */
+        z-index: 0; /* Place the shadow behind the image */
+    }
+}
+
+/* Mobile view */
+/* Media Queries */
+
+.mobile-dropdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 768px) {
+    .cat-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cat-container .cat-shadow {
+        height: 20px;
+    }
+    
+    .icon-bar {
+        display: none;
+    }
+    
+    .scroll-to-top {
+        display: none;
+    }
+    
+    .navbar-custom {
+        padding: 0.5rem 0.5rem;
+    }
+
+    #navbar > div > div > ul {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        place-items: start;
+        padding: 1rem;
+
+        & .topnav-right {
+            grid-column: span 2;
+            order: 3;
+        }
+        
+    }
+    
+    li#activities {
+        margin-left: 0 !important;
+    }
+    
+    li.topnav-right {
+        text-align: center;
+        margin: 0 !important;
+        font-size: 20px;
+    }
+
+    body > footer > section > div > div > div.col-md-3.col-lg-2.col-xl-2.mb-4 > div > ul {
+        align-items: center !important;
+    }
+    
+    footer h6 {
+        color: goldenrod;
+    }
+}
+
+

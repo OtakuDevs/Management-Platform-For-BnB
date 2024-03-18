@@ -1,0 +1,113 @@
+@using System.Text.RegularExpressions
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Skeppsgarden.Web.ViewModels.Rooms.ListRoomsViewModel
+<!--suppress JSUnresolvedReference -->
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/rooms-view-customization.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css">
+<!-- Load font awesome icons -->
+
+
+@section Scripts{
+    <script src="@Url.Content("~/js/custom/room-details-slideshow.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/js/custom/room-details-popup-form.js")" type="text/javascript"></script>
+}
+
+<div class="rooms-view-header">
+    <div class="rooms-view-header-wrapper">
+        <h2>Skeppsgården B&amp;B</h2>
+        <p>SomeStret 1 123 45 Somewhere, 123 45 Somewhere, Sweden</p>
+        <p>Overview, surroundings and facilities of Skeppsgården B&amp;B</p>
+    </div>
+</div>
+
+<div class="property-highlights-container">
+    <div class="property-highlights-left">
+        <div class="property-highlights-overview">
+            <h3>Skeppsgården B&amp;B</h3>
+            <p>This hotel is only 100 metres from the Baltic Sea and 20 km south of Valdemarsvik. It offers a terrace, free coffee/tea and rooms with sea views. Åsvikelandets Nature Reserve is 2 km away.</p>
+            <p>All rooms at Skeppsgården B&amp;B have a seating area and a TV.</p>
+            <p>Couples particularly like the location — they rated it high for a two-person trip.</p>
+        </div>
+        <div class="property-highlights-facilities">
+
+            <div class="property-highlights-facilities-items">
+                <h3>Most popular facilities</h3>
+                <p><i class="fas fa-parking"></i>Free parking</p>
+                <p><i class="fas fa-smoking-ban"></i>Non-smoking rooms</p>
+                <p><i class="fa-solid fa-people-group"></i>Family rooms</p>
+                <p><i class="fa-solid fa-martini-glass"></i>Bar</p>
+                <p><i class="fa-solid fa-bacon"></i>Breakfast</p>
+                <p><i class="fa-solid fa-child-reaching"></i>Children's cots (upon request)</p>
+            </div>
+
+            <div class="property-highlights-facilities-items">
+                <h3>Additional activities</h3>
+                <p><i class="fa-solid fa-water"></i>Sea/ocean: Gryts archipelago ~ 10 km</p>
+                <p><i class="fa-solid fa-bicycle"></i>Cycling</p>
+                <p><i class="fa-solid fa-person-hiking"></i>Hiking</p>
+                <p><i class="fa-solid fa-fish"></i>Fishing</p>
+                <p><i class="fa-solid fa-chess-board"></i>Games room</p>
+                <p><i class="fa-solid fa-music"></i>Live music/performance</p>
+            </div>
+        </div>
+    </div>
+    <div class="property-highlights-right">
+        <h4>Property highlights</h4>
+        <div class="property-highlights-amenities">
+            <p><i class="fa-solid fa-bed"></i>Perfect for a 1-night stay!</p>
+            <p><i class="fa-solid fa-location-dot"></i>Top location: Highly rated by recent guests.</p>
+        </div>
+        <h4>Breakfast info</h4>
+        <p><i class="fa-solid fa-utensils"></i>Continental, Vegetarian</p>
+        <p><i class="fas fa-parking"></i>Free private parking available at the hotel</p>
+        <h4>Loyal Customers</h4>
+        <p><i class="fa-solid fa-check-double"></i>There are more repeat guests here than most other properties.</p>
+        <div class="room-view-button-details">
+            <form method="get" asp-controller="Booking" asp-action="Index">
+                <button type="submit" class="open-button">Go to Bookings <i class="fa-solid fa-arrow-right-long"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr class="solid">
+<div class="left-right-divider">
+    <h2>Choose from Our Range of Comfortable and Affordable Rooms</h2>
+</div>
+<hr class="solid">
+<div class="rooms-view-container">
+    @foreach (var room in Model.Rooms)
+    {
+        <div class="room-view-card">
+            <div class="room-view-image">
+                <img src="~/images/local/@room.Image[0]" alt="room">
+            </div>
+            <div class="room-view-details">
+                <h4>Room number • @room.RoomNumber.ToString("0000")</h4>
+                <p><i class="fa-solid fa-rug"></i>Floor Level • @room.Level</p>
+                <p><i class="fa-solid fa-mountain-sun"></i>View • @room.View</p>
+                <p><i class="fa-solid fa-person-shelter"></i>Room type • @room.RoomType</p>
+                <p><i class="fa-solid fa-door-closed"></i>Room Areas • @string.Join(" ", Regex.Split(@room.Areas, @"(?<!^)(?=[A-Z])"))</p>
+                <p><i class="fa-solid fa-bed"></i>Bed Types • @room.BedTypes</p>
+                <p><i class="fa-solid fa-people-group"></i>Room Capacity • @room.Capacity</p>
+                <p><i class="fa-solid fa-hand-holding-dollar"></i>Rate per Night • @room.Rate SEK</p>
+                <p><i class="fa-solid fa-money-bill-wave"></i>Pay at property</p>
+                @if (room.IsAvailable)
+                {
+                    <span class="badge badge-success rounded-pill d-inline">Available</span>
+                }
+                else
+                {
+                    <span class="badge badge-danger rounded-pill d-inline">Not Available</span>
+                }
+                <div class="room-view-button-details">
+                    @{
+                        <button id="@room.Id" class="open-button" onclick="openForm(this)">Room Details</button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Partial("_RoomDetailsPartial")

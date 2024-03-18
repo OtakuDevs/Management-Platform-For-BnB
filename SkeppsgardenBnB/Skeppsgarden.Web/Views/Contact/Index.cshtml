@@ -1,0 +1,159 @@
+@model Skeppsgarden.Web.ViewModels.Contact.ContactViewModel
+
+<link rel="stylesheet" href="~/css/custom/contact-customization.css" class="rel">
+
+@{
+    var googleMapApi = ViewData["GoogleMapApi"] as string;
+    ViewBag.Title = "Contact Skeppsgården B&B"; 
+}
+
+@* TODO: Replace all relevant information for your BnB before deployment *@
+
+<div class="contact-container">
+    <div class="contact-image-wrapper">
+        <img src="~/images/site/contact.png" alt="contact"/>
+        <h1>Contact Information</h1>
+    </div>
+    <div class="contact-body">
+        <div class="contact-card-wrapper">
+            <div class="contact-card">
+                <div class="contact-row">
+                    <h2>Address</h2>
+                    <p>
+                        Skeppsgården B&amp;B<br>
+                        SomeStreet 1, Skeppsgården<br>
+                        123 45 Somewhere<br>
+                        Sweden
+                    </p>
+                </div>
+                <div class="contact-row">
+                    <h2>Phone</h2>
+                    <p>+46 (0)123 45 67 89</p>
+                </div>
+                <div class="contact-row">
+                    <h2>Email</h2>
+                    <p>
+                        <a href="mailto:contact@bnb.zzz">contact@bnb.zzz</a>
+                    </p>
+                </div>
+                <div class="contact-row">
+                    <h2>Website</h2>
+                    <p>
+                        <a href="http://www.bnb.zzz">www.bnb.zzz</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h2>Owners & Staff</h2>
+                <p>
+                    Owners: Name1 and Name2
+                </p>
+                <h2>Seasonal Opening Period</h2>
+                <p>Open from May 15 to September 17</p>
+                <h2>Mission Statement</h2>
+                <p>"Our goal is for you to enjoy yourself and get a good night's sleep. If you are unhappy, talk to us – if you are happy, tell your friends!"</p>
+
+            </div>
+        </div>
+
+        <div class="contact-row-element">
+            <h2>Social Media</h2>
+            <p>Stay updated with news and offers by following us on Facebook: <a href="https://www.facebook.com/">@@bnb.zzz</a></p>
+
+            <h2>Downloads</h2>
+            <p>Information Brochure: <a href="~/misc/Official Baseball Rules 2021.pdf">Download brochure (PDF format)</a></p>
+
+            <h2>Feedback</h2>
+            <p>We value your feedback! Please feel free to reach out to us via phone, email, or social media with any questions, concerns, or feedback you may have. Your satisfaction is our priority.</p>
+
+        </div>
+    </div>
+</div>
+
+<div class="map-container" id="get-map">
+    <div class="map-banner">
+        <h2 class="map-title">Discover the Way to Our Location</h2>
+        <div class="directions-container" id="directions-container">
+            <label for="start-location">Starting location:</label>
+            <input type="text" id="start-location" placeholder="Enter location:">
+            <button onclick="calculateDirections()">Get Directions</button>
+        </div>
+    </div>
+    <div class="map-holder" id="map"></div>
+</div>
+<script>
+    let map;
+    let infoWindow;
+    let directionsService;
+    let directionsRenderer;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 58.028942503518444, lng: 16.65620936434405 },
+            zoom: 14
+        });
+
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+
+        const position = { lat: 58.028942503518444, lng: 16.65620936434405 };
+        const marker = new google.maps.Marker({
+            position,
+            map,
+            label: {
+                text: "Skeppsgården B&B",
+                color: "#000000",
+                fontSize: "11px",
+                fontWeight: "bold"
+            },
+            optimized: false
+        });
+
+        const addressContentString = `
+            <div style="color: #333333; font-family: Arial, sans-serif;">
+                <div style="text-align: center;">
+                    <strong style="font-weight: bold;">Skeppsgården B&B</strong>
+                </div>
+                <strong style="font-weight: bold;">Adress:</strong> SomeStreet 1, Skeppsgården, 123 45 Somewhere<br>
+                <strong style="font-weight: bold;">Telefon:</strong> +46 (0)123 45 67 89<br>
+                <strong style="font-weight: bold;">Coordinates:</strong> Lat: ${position.lat.toFixed(7)} Long: ${position.lng.toFixed(7)}<br>
+            </div>
+        `;
+
+        infoWindow = new google.maps.InfoWindow({
+            content: addressContentString
+        });
+
+        marker.addListener("click", () => {
+            infoWindow.close();
+            infoWindow.open(map, marker);
+        });
+    }
+
+    function calculateDirections() {
+        const startLocation = document.getElementById('start-location').value;
+        const destinationCoordinates = { lat: 58.028942503518444, lng: 16.65620936434405 };
+
+        if (startLocation) {
+            const request = {
+                origin: startLocation,
+                destination: destinationCoordinates,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+
+            directionsService.route(request, function (result, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(result);
+                } else {
+                    alert('Directions request failed due to ' + status);
+                }
+            });
+        } else {
+            alert('Please enter a starting location.');
+        }
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=@googleMapApi&callback=initMap" async defer></script>

@@ -1,0 +1,292 @@
+/* SECTION: Restaurant View Customization */
+
+.restaurant-container {
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+    margin: 0 auto 2rem auto;
+    padding: 0.3rem 0;
+    color: var(--color-black);
+}
+
+.restaurant-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 3rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: var(--border-radius-4);
+    box-shadow: var(--box-shadow-all-sides-strong);
+    background: url("../../images/site/menu-background.jpg") no-repeat;
+    background-size: cover;
+
+}
+
+.restaurant-info {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    text-align: center;
+    border-radius: var(--border-radius-4);
+}
+
+.restaurant-info-title {
+    margin: 5vh 0;
+    font-size:  3rem;
+    color: var(--color-brownish-red);
+    text-shadow: var(--text-shadow-black);
+}
+
+.restaurant-info-description {
+    width: 75%;
+    margin: 0 auto;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-black);
+}
+
+.restaurant-info h2 {
+    font-size: 1.3rem;
+    padding: 30px 0 0;
+    margin: 0 0 1rem 0;
+    color: rgb(166, 61, 17);
+    text-decoration: underline;
+}
+
+.restaurant-info-working-hours {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 25%;
+    margin: 1rem 1rem;
+    height: auto;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: var(--box-shadow-mild-strong);
+    background-color: var(--color-opacity-2);
+}
+
+.restaurant-info-working-hours h1 {
+    padding: 25px;
+    margin: 0 0 1rem 0;
+    box-shadow: var(--box-shadow-mild);
+    background: #cb356b; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+            to right,
+            #592009,
+            #a63d11
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+            to right,
+            #592009,
+            #a63d11
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: var(--color-white);
+}
+
+.menu-buttons-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    background: linear-gradient(to right, transparent 15%, #c9892f 20%, #fddea6 50%, #c9892f 80%, transparent 85%);
+    width: 85%;
+    overflow: hidden;
+    border-radius: var(--border-radius-4);
+}
+
+.menu-button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    transition: 0.3s;
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    color: var(--color-darkgray-strong);
+}
+
+.menu-button:hover {
+    background-color: var(--color-orange);
+    color: var(--color-darkgray-strong);
+    transition: 0.3s;
+    border-bottom: none !important;
+    box-shadow: inset 2px -6px 10px rgba(0, 0, 0, 0.5),
+    -2px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.menu-button.active {
+    background-color: var(--color-orange);
+    color: var(--color-darkgray-strong);
+    transition: 0.3s;
+    border-bottom: none !important;
+    position: relative;
+    z-index: 2;
+    box-shadow: inset 4px -6px 10px rgba(0, 0, 0, 0.5),
+    4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.menu-section {
+    background: url("../../images/site/menu01.jpg") fixed;
+    background-size: cover;
+    z-index: 1;
+    padding: 2.5rem;
+    margin: 0 auto;
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-all-sides-strong);
+}
+
+.menu-title {
+    margin: 0 auto 1rem auto;
+    padding: 0 0 1rem 0;
+    font-size: 3rem;
+    font-weight: 400;
+    font-family: 'Dancing Script', cursive;
+    color: var(--color-darkgray-strong);
+    text-align: center;
+    text-shadow: 1px 1px 1px darkgray;
+}
+
+.menu-title::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-darkgray-strong);
+    margin: 1rem auto;
+}
+
+.menu-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-darkgray-strong);
+    margin: 1rem auto 0 auto;
+}
+
+.menu-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    height: auto;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    border-radius: var(--border-radius-4);
+    text-shadow: 1px 1px 1px darkgray;
+}
+
+.menu-table {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    width: 100%;
+}
+
+.menu-table-header {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+}
+
+.menu-item-title {
+    font: 2rem cookie, cursive;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.dots {
+    flex: 1;
+    border-bottom: 2px dashed var(--color-darkgray-strong);
+    margin: 0 1rem;
+}
+
+.menu-item-price {
+    font: 1.5rem cookie, cursive;
+}
+
+.menu-item-description {
+    font: 1.3rem cookie, cursive;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Mobile view */
+/* Media Queries */
+@media (max-width: 768px) {
+    .restaurant-container {
+        width: 100%;
+    }
+
+    .restaurant-header {
+        flex-direction: column;
+    }
+    
+    .restaurant-info {
+        width: 100%;
+    }
+    
+    .restaurant-info-title {
+        margin: 2vh 0;
+        font-size:  2.5rem;
+    }
+    
+    .restaurant-info-description {
+        width: 95%;
+        font-size: 1.3rem;
+        font-weight: 500;
+        text-align: justify;
+    }
+    
+    .restaurant-info-working-hours {
+        width: 100%;
+        
+        & table {
+            color: var(--color-text-primary);
+            text-shadow: var(--text-shadow-outline);
+        }
+    }
+    
+    .menu-container {
+        width: 100%;
+    }
+    
+    .menu-buttons-wrapper {
+        width: 100%;
+        flex-direction: column;
+        background:  linear-gradient(to right, transparent 0%, #c9892f 20%, #fddea6 50%, #c9892f 80%, transparent 100%);
+    }
+    
+    .menu-button {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    .menu-wrapper {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+    
+    .menu-table {
+        width: 100%;
+        margin: 1rem auto;
+        
+        & h3 {
+            font-size: 1.5rem;
+            text-align: start;
+        }
+    }
+}
+

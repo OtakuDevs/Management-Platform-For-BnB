@@ -1,0 +1,14 @@
+@model Skeppsgarden.Web.Areas.Admin.ViewModels.HyperlinkListViewModel
+
+<link rel="stylesheet" href="~/css/custom/admin-area-hyperlinks-customization.css" class="rel">
+
+<div class="links-container">
+    <div class="links-wrapper">
+        @foreach (var hyperlink in Model.Hyperlinks)
+        {
+            <a href="@hyperlink.Url" target="_blank" class="link-element">
+                <h3>@hyperlink.Text</h3>
+            </a>
+        }
+    </div>
+</div>

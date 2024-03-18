@@ -1,0 +1,33 @@
+@model LocalPlacesCollectionViewModel
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/local-places-customization.css" asp-append-version="true"/>
+
+@{
+    ViewData["Title"] = "Local Places";
+}
+<div class="local-places-container">
+    <div class="local-place-banner">
+        <img src="~/images/local/valdemarsvik.jpg" alt="Valdemarsvik" class="local-place-banner-image"/>
+        <p class="lead-local-place">“Welcome to our cozy B&amp;B in the heart of a charming village! We want to make sure you have the best experience during your stay, so we’ve put together a list of nearby places for you to explore. From scenic nature spots to historical landmarks and local eateries, there’s something for everyone. Take a look and start planning your adventure today!” </p>
+    </div>
+
+    <div class="custom-divider">
+        <h3>Discover More About The Area: Check Out These Nearby Places</h3>
+    </div>
+
+
+    <div class="local-places-cards-container">
+        @foreach (var localPlace in Model.LocalPlaces)
+        {
+            <a class="local-places-card" href="@localPlace.Url" target="_blank">
+                <p class="card-text-on-hover">@localPlace.Description</p>
+                <img class="image-local-place" src="@Url.Content(localPlace.ImageUrl)" alt="@localPlace.Name"/>
+                <div class="text-content-wrapper">
+                    <h2 class="title-local-place">@localPlace.Name</h2>
+                    <p>Click the image to explore</p>
+                </div>
+            </a>
+        }
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="EasyData.AspNetCore" Version="1.4.20" />
+      <PackageReference Include="EasyData.EntityFrameworkCore.Relational" Version="1.4.20" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Skeppsgarden.Data.Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Skeppsgarden.Data.Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Skeppsgarden.Data.Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="Skeppsgarden.Data.Models\Skeppsgarden.Data.Models.csproj" />
+    </ItemGroup>
+
+
+</Project>

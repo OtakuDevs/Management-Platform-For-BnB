@@ -1,0 +1,158 @@
+@model ICollection<RestaurantViewModel>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Skeppskrogen";
+}
+
+<title>@ViewBag.Title</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
+<link rel="stylesheet" href="~/css/custom/restaurant-view-customization.css">
+
+@section Scripts {
+    <script>
+            // Convert TimeSpan to minutes
+            function convertToMinutes(timespan) {
+                const parts = timespan.split(':');
+                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+            }
+    
+            let isOpen = false;
+            let openHours = convertToMinutes('@Model.FirstOrDefault()!.OpenWorkingHours');
+            let closeHours = convertToMinutes('@Model.FirstOrDefault()!.CloseWorkingHours');
+            let currentHours = new Date().getHours() * 60 + new Date().getMinutes(); // Convert current time to minutes
+    
+            // Check if the restaurant is open
+            if (new Date().getDay() !== 1) {
+                if (currentHours >= openHours && currentHours <= closeHours) {
+                    isOpen = true;
+                }
+            }
+    
+            const element = document.getElementById("isOpen");
+            if (isOpen) {
+                element.innerHTML += "OPEN";
+                element.style.color = "darkgreen";
+            } else {
+                element.innerHTML += "CLOSED";
+            }
+        </script>
+
+    <script>
+        const menuButtons = document.querySelectorAll(".menu-button");
+        const menuSections = document.querySelectorAll(".menu-section");
+        
+        menuSections.forEach(section => {
+            section.style.display = "none";
+        });
+        
+       const initialSection = document.querySelector(".menu-button[data-section='MainCourse']").getAttribute("data-section");
+       document.getElementById(initialSection).style.display = "block";
+        
+        menuButtons.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                // Prevent the default behavior of the link
+                    e.preventDefault();
+                menuButtons.forEach(btn => {
+                    btn.classList.remove("active");
+                });
+            });
+        });
+        
+        menuButtons[0].classList.add("active");
+        
+        menuButtons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                // Prevent the default behavior of the link
+                    e.preventDefault();
+                    
+                    button.classList.add("active");
+                // Get the section name from the data-section attribute of the clicked button
+                     const target = button.getAttribute("data-section");
+                menuSections.forEach(section => {
+                    if (section.id === target) {
+                        section.style.display = "block";
+                    } else {
+                        section.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+@foreach (var restaurant in Model)
+{
+    <div class="restaurant-container">
+        <div class="restaurant-header">
+            <div class="restaurant-info">
+                <h1 class="restaurant-info-title">@restaurant.Name</h1>
+                <p class="restaurant-info-description">@restaurant.Description</p>
+                <h2 id="isOpen">The Restaurant is currently </h2>
+            </div>
+
+            <div class="restaurant-info-working-hours">
+                <h1>Open Hours</h1>
+                <table class="oh-table">
+                    <tr>
+                        <td>Monday</td>
+                        <td>CLOSED</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>@restaurant.OpenWorkingHours.Hours AM - @restaurant.CloseWorkingHours.Hours PM</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>@restaurant.OpenWorkingHours.Hours AM - @restaurant.CloseWorkingHours.Hours PM</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>@restaurant.OpenWorkingHours.Hours AM - @restaurant.CloseWorkingHours.Hours PM</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>@restaurant.OpenWorkingHours.Hours AM - @restaurant.CloseWorkingHours.Hours PM</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>@restaurant.OpenWorkingHours.Hours AM - @restaurant.CloseWorkingHours.Hours PM</td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td>@restaurant.OpenWorkingHours.Hours AM - @restaurant.CloseWorkingHours.Hours PM</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <div class="menu-buttons-wrapper">
+                <button class="menu-button" data-section="MainCourse">Main Courses</button>
+                <button class="menu-button" data-section="Vegetarian">Vegetarian</button>
+                <button class="menu-button" data-section="KidMenu">KidMenu</button>
+                <button class="menu-button" data-section="Appetizer">Appetizer</button>
+                <button class="menu-button" data-section="Dessert">Dessert</button>
+            </div>
+            @foreach (var group in restaurant.MenuItems.GroupBy(item => item.MenuItemType))
+            {
+                <div class="menu-section" id="@group.Key">
+                    <h2 class="menu-title">@group.Key</h2>
+                    <div class="menu-wrapper">
+                        @foreach (var menuItem in group)
+                        {
+                            <div class="menu-table">
+                                <div class="menu-table-header">
+                                    <h3 class="menu-item-title">@menuItem.Name</h3>
+                                    <span class="dots"></span>
+                                    <span class="menu-item-price">@menuItem.Price [SEK]</span>
+                                </div>
+                                <p class="menu-item-description">@menuItem.Ingredients</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

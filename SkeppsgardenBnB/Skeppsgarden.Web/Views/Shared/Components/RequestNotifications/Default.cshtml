@@ -1,0 +1,9 @@
+@model RequestComponentViewModel
+
+<a class="request-count-element" asp-area="Admin" asp-controller="AdminPanel" asp-action="Index">You have <span id="requestsCount">@Model.Count</span> reservation requests to approve or decline ! Click here to review them.</a>
+
+@foreach (var req in Model.Requests)
+{
+    <p>A new reservation request has been made at @req.Date</p>
+}
+<button type="submit" title="Close" class="Message-close" onclick="closeNotification()"><i class="fa fa-times"></i></button>

@@ -1,0 +1,65 @@
+@model List<string>
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/admin-area-excel-partial.css" asp-append-version="true"/>
+
+<form id="downloadExcelForm" action="@Url.Action("ExcelDownload", "AdminPanel", new { area = "Admin" })" method="post" id="excelDownloadForm">
+    @Html.AntiForgeryToken()
+    <div class="buttons-container">
+        <div class="admin-buttons-wrapper">
+            <button id="selectAll" type="button" class="admin-button" onclick="selectAllCheckboxes()">Select All</button>
+            <button id="deselectAll" type="button" class="admin-button" onclick="deselectAllCheckboxes()">Deselect All</button>
+            <button id="downloadExcelBtn" type="submit" class="admin-button" form="downloadExcelForm">Download Excel</button>
+        </div>
+    </div>
+    <div class="excel-checkboxes-container">
+        @foreach (var tableName in Model)
+        {
+            <div class="excel-checkbox-row" onclick="boxChecked(this)">
+                <label class="excel-checkbox-label">@tableName</label>
+                <input class="excel-checkbox-element" type="checkbox" name="selectedTables" value="@tableName"/>
+            </div>
+        }
+    </div>
+</form>
+
+
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Function to handle the form submission
+            $('form').submit(function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                console.log('Form submitted');
+
+                // Prepare the data to be sent
+                var selectedTables = $('input[name="selectedTables"]:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                console.log('Selected Tables:', selectedTables);
+
+                // Include the anti-forgery token
+                var token = $('input[name="__RequestVerificationToken"]').val();
+
+                // Make the POST request
+                $.ajax({
+                    url: '@Url.Action("ExcelDownload", "AdminPanel", new { area = "Admin" })',
+                    type: 'POST',
+                    traditional: true,
+                    data: { selectedTables: selectedTables, __RequestVerificationToken: token },
+                    success: function (result) {
+                        // Handle the success response as needed
+                        console.log('Success');
+                    },
+                    error: function () {
+                        console.error('Error submitting the request');
+                    }
+                });
+            });
+        });
+    </script>
+}

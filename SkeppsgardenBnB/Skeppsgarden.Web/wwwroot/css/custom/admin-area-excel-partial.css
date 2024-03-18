@@ -1,0 +1,115 @@
+
+.buttons-container{
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    
+    & .admin-buttons-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        width: 95%;
+        margin: 3rem auto;
+    }
+}
+
+.excel-checkboxes-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    padding: 0 0.5rem;
+    margin: 0 auto 1rem auto;
+}
+
+.excel-checkbox-row {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-opacity-3);
+    border-radius: var(--border-radius-4);
+    padding: 0.5rem;
+    cursor: pointer;
+    color : var(--color-text-primary);
+    text-shadow:  var(--text-shadow);
+    background-color: var(--color-opacity-1);
+    box-shadow:  var(--box-shadow-light);
+    
+    &:hover {
+        background-color: var(--color-opacity-2);
+        transform: scale(1.025);
+    }
+}
+
+
+/* Style the checkbox input */
+.excel-checkbox-element {
+    /* Hide the default checkbox */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 1px solid #ccc; /* Border color */
+    width: 20px; /* Adjust width as needed */
+    height: 20px; /* Adjust height as needed */
+    border-radius: var(--border-radius-4); /* Rounded corners */
+    margin-right: 5px; /* Adjust margin as needed */
+    cursor: pointer;
+    background-color: var(--color-white) /* Checkbox background color */
+}
+
+.excel-checkbox-label {
+    margin-right: auto;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Its applied on the parent div of the checkbox */
+.checkbox-is-checked {
+    background-color: var(--color-opacity-4);
+    color: var(--color-nav-hover);
+    
+    /* Style the checkbox when checked */
+    & .excel-checkbox-element {
+        background-color: var(--color-nav-hover); /* Checkbox background color */
+
+        /* Show the checkmark when checked */
+        &::before {
+            content: '\2713'; /* Check mark character */
+            display: block;
+            text-align: center;
+            line-height: 20px; /* Match the height of the checkbox */
+            font-weight: bold;
+            color: var(--color-black); /* Tick mark color */
+        }
+    }
+}
+
+/* Mobile view */
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .excel-checkboxes-container {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+    
+    .excel-checkbox-row {
+        margin: 0.5rem auto;
+        width: 100%;
+    }
+    
+    .buttons-container {
+        width: 100%;
+        
+        & .admin-buttons-wrapper {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+    }
+    
+    .scroll-right-message {
+        display: none;
+    }
+}
+
+

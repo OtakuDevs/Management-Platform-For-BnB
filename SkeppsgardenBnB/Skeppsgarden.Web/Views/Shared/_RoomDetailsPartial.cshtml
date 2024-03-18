@@ -1,0 +1,200 @@
+@model Skeppsgarden.Web.ViewModels.Rooms.ListRoomsViewModel
+<!--suppress JSUnresolvedReference -->
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/room-details-popup-form.css">
+<!-- Load font awesome icons -->
+<link rel="stylesheet" href="~/css/default/http_use.fontawesome.com_releases_v6.5.1_css_all.css">
+
+@section Scripts{
+    <script src="@Url.Content("~/js/custom/room-details-slideshow.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/js/custom/room-details-popup-form.js")" type="text/javascript"></script>
+}
+
+<div class="modal" id="myFormRoomDetails">
+    <div class="modal-content">
+        <form>
+            <input type="text" id="id" name="id" hidden="hidden"/>
+            <div class="room-details-form-container">
+                <div class="room-details-image-container">
+
+                    <div class="slideshow-container">
+
+                        @{
+                            for (var i = 1; i <= 10; i++)
+                            {
+                                var idName = "image0" + i;
+                                <div class="mySlides">
+                                    <div class="numbertext">@i / 10</div>
+                                    <img id=@idName src="" style="width:100%" alt="">
+                                </div>
+                            }
+                        }
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <!-- Image text -->
+                        <div class="caption-container">
+                            <p id="caption"></p>
+                        </div>
+
+                        <!-- Thumbnail images -->
+                        <div class="row">
+                            <div class="column">
+                                <img id="thumbnail-image-01" class="demo cursor" src="" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                            </div>
+                            <div class="column">
+                                <img id="thumbnail-image-02" class="demo cursor" src="" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+                            </div>
+                            <div class="column">
+                                <img id="thumbnail-image-03" class="demo cursor" src="" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+                            </div>
+                            <div class="column">
+                                <img id="thumbnail-image-04" class="demo cursor" src="" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+                            </div>
+                            <div class="column">
+                                <img id="thumbnail-image-05" class="demo cursor" src="" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+                            </div>
+                            <div class="column">
+                                <img id="thumbnail-image-06" class="demo cursor" src="" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="room-details-info-header">
+                        <h1 class="room-details-title">Room Information</h1>
+                        <div class="room-details-info-header-unit">
+                            <label><i class="fa-solid fa-rug"></i>Floor Level: </label>
+                            <input class="confirmation-input" type="text" id="floorLevel" name="floorLevel" disabled="disabled">
+                        </div>
+                        <div class="room-details-info-header-unit">
+                            <label><i class="fa-solid fa-mountain-sun"></i>View: </label>
+                            <input class="confirmation-input" type="text" id="view" name="view" disabled="disabled">
+                        </div>
+                        <div class="room-details-info-header-unit">
+                            <label><i class="fa-solid fa-person-shelter"></i>Room type: </label>
+                            <input class="confirmation-input" type="text" id="roomType" name="roomType" disabled="disabled">
+                        </div>
+                        <div class="room-details-info-header-unit">
+                            <label><i class="fa-solid fa-door-closed"></i>Areas: </label>
+                            <input class="confirmation-input" type="text" id="roomAreas" name="roomAreas" disabled="disabled">
+                        </div>
+                        <div class="room-details-info-header-unit">
+                            <label><i class="fa-solid fa-bed"></i>Bed Types: </label>
+                            <input class="confirmation-input" type="text" id="bedTypes" name="bedTypes" disabled="disabled">
+                        </div>
+                        <div class="room-details-info-header-unit">
+                            <label><i class="fa-solid fa-people-group"></i>Capacity: </label>
+                            <input class="confirmation-input" type="text" id="roomCapacity" name="roomCapacity" disabled="disabled">
+                        </div>
+                        <div class="room-details-info-header-unit">
+                            <label><i class="fa-solid fa-hand-holding-dollar"></i>Rate: </label>
+                            <input class="confirmation-input" type="text" id="rate" name="rate" disabled="disabled">
+                        </div>
+                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                    </div>
+                </div>
+                <div class="room-details-info-container">
+                    <div class="room-details-info-columns">
+                        <div class="room-details-info-single-column">
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-shower"></i>Bathroom</h5>
+                                <p><i class="fa-solid fa-check"></i>Toilet paper</p>
+                                <p><i class="fa-solid fa-check"></i>Towels</p>
+                                <p><i class="fa-solid fa-check"></i>Bath or shower</p>
+                                <p><i class="fa-solid fa-check"></i>Private bathroom</p>
+                                <p><i class="fa-solid fa-check"></i>Free toiletries</p>
+                                <p><i class="fa-solid fa-check"></i>Hairdryer</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-bed"></i>Bedroom</h5>
+                                <p><i class="fa-solid fa-check"></i>Linen</p>
+                                <p><i class="fa-solid fa-check"></i>Wardrobe or closet</p>
+                            </div>
+                        </div>
+                        <div class="room-details-info-single-column">
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-bed-pulse"></i>Room Amenities</h5>
+                                <p><i class="fa-solid fa-check"></i>Socket near the bed</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-dice"></i>Entertainment</h5>
+                                <p><i class="fa-solid fa-check"></i>Board games/puzzles</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-couch"></i>Living Area</h5>
+                                <p><i class="fa-solid fa-check"></i>Seating Area</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-tv"></i>Media</h5>
+                                <p><i class="fa-solid fa-check"></i>Flat-screen TV</p>
+                                <p><i class="fa-solid fa-check"></i>TV</p>
+                            </div>
+                        </div>
+                        <div class="room-details-info-single-column">
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-cloud-sun"></i>Outdoors</h5>
+                                <p><i class="fa-solid fa-check"></i>Picnic area</p>
+                                <p><i class="fa-solid fa-check"></i>Outdoor furniture</p>
+                                <p><i class="fa-solid fa-check"></i>BBQ facilities</p>
+                                <p><i class="fa-solid fa-check"></i>Terrace</p>
+                                <p><i class="fa-solid fa-check"></i>Garden</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-person-hiking"></i>Activities</h5>
+                                <p><i class="fa-solid fa-check"></i>Bicycle rental - Additional charge</p>
+                                <p><i class="fa-solid fa-check"></i>Live music/performance</p>
+                                <p><i class="fa-solid fa-check"></i>Badminton equipment</p>
+                                <p><i class="fa-solid fa-check"></i>Cycling <span>Off-site</span></p>
+                                <p><i class="fa-solid fa-check"></i>Hiking <span>Off-site</span></p>
+                                <p><i class="fa-solid fa-check"></i>Games room</p>
+                                <p><i class="fa-solid fa-check"></i>Fishing <span>Off-site</span></p>
+                            </div>
+
+                        </div>
+                        <div class="room-details-info-single-column">
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-square-parking"></i>Parking</h5>
+                                <p><i class="fa-solid fa-check"></i>Free parking (reservation is not needed).</p>
+                                <p><i class="fa-solid fa-check"></i>Accessible parking</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-bell-concierge"></i>Services</h5>
+                                <p><i class="fa-solid fa-check"></i>Shared lounge/TV area</p>
+                                <p><i class="fa-solid fa-check"></i>Private check-in/check-out</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-utensils"></i>Food &amp; Drink</h5>
+                                <p><i class="fa-solid fa-check"></i>Restaurant</p>
+                                <p><i class="fa-solid fa-check"></i>Bar</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-wifi"></i>Internet</h5>
+                                <p><i class="fa-solid fa-xmark" style="color: red"></i>No internet access available.</p>
+                            </div>
+                        </div>
+                        <div class="room-details-info-single-column">
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-user-shield"></i>Safety &amp; Security</h5>
+                                <p><i class="fa-solid fa-check"></i>Fire extinguishers</p>
+                                <p><i class="fa-solid fa-check"></i>Smoke alarms</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-bookmark"></i>General</h5>
+                                <p><i class="fa-solid fa-check"></i>Designated smoking area</p>
+                                <p><i class="fa-solid fa-check"></i>Hardwood or parquet floors</p>
+                                <p><i class="fa-solid fa-check"></i>Heating</p>
+                                <p><i class="fa-solid fa-check"></i>Non-smoking rooms</p>
+                            </div>
+                            <div class="room-details-column-unit">
+                                <h5><i class="fa-solid fa-language"></i>Languages spoken</h5>
+                                <p><i class="fa-solid fa-check"></i>English</p>
+                                <p><i class="fa-solid fa-check"></i>Swedish</p>
+                                <p><i class="fa-solid fa-check"></i>Spanish</p>
+                                <p><i class="fa-solid fa-check"></i>French</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

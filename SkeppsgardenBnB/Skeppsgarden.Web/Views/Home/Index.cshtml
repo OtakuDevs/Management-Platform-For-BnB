@@ -1,0 +1,100 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/home-page-customization.css" asp-append-version="true"/>
+
+@section Scripts {
+    <script src="~/js/custom/home-picture-slideshow.js" type="text/javascript"></script>
+}
+
+<div class="home-logo-wrapper">
+    <img class="home-logo-image" src="~/images/site/skeppsgarden-homo-logo.png" alt=""/>
+</div>
+
+
+<div class="home-header-wrapper">
+    <p class="home-header-title">
+        <span>Welcome to Skeppsgården Bed & Breakfast</span>
+    </p>
+    <div class="home-header-text-body">
+        <p class="home-header-text">A charming family-operated retreat nestled in the serene Swedish countryside</p>
+
+        <p class="home-header-text">Located in the quaint village of Skeppsgården, our B&amp;B offers an idyllic escape for travelers seeking tranquility and comfort</p>
+
+        <p class="home-header-text">Discover the essence of Swedish hospitality and create cherished memories</p>
+    </div>
+</div>
+
+<div class="booking-link-cards">
+    <a class="booking-link-card" method="get" asp-controller="Rooms" asp-action="ListAllRooms">
+        <img src="~/images/site/booking-room-link.jpg" alt/>
+        <h2>Accommodations Overview</h2>
+        <p>Discover the Comforts of Our Rooms</p>
+    </a>
+
+    <a class="booking-link-card" method="get" asp-controller="Restaurant" asp-action="Index">
+        <img src="~/images/site/booking-rest-link.jpg" alt=""/>
+        <h2>Dining Experience</h2>
+        <p>Indulge in Culinary Delights at Our Restaurant</p>
+    </a>
+
+    <a class="booking-link-card" method="get" asp-controller="Activity" asp-action="ListAllActivities">
+        <img src="~/images/site/booking-adv-link.jpg" alt=""/>
+        <h2>Local Adventures Await</h2>
+        <p>Embark on Local Adventures and Activities</p>
+    </a>
+
+    <a class="booking-link-card" method="get" asp-controller="LocalPlaces" asp-action="GetAllLocalPlaces">
+        <img src="~/images/site/booking-local-link.jpg" alt=""/>
+        <h2>Explore Nearby Local Places</h2>
+        <p>Experience the Charm of Nearby Villages and Towns</p>
+    </a>
+</div>
+
+<!-- Slideshow -->
+
+<div class="d-flex justify-content-center">
+    <div class="scroller" data-direction="right" data-speed="slow">
+        <div class="scroller-inner">
+            @for (int i = 0; i < Model.Images.Count; i++)
+            {
+                <img src="~/images/gallery/@Model.Images.ElementAt(i)" alt="text"/>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="home-footer-container">
+    <div class="home-about-card">
+        <a class="redirect-wrapper" method="get" asp-controller="Home" asp-action="About">
+            <img src="~/images/site/home-header.jpg" alt="Skeppsgården Bed & Breakfast" class="home-about-image"/>
+            <div class="home-text-wrapper">
+                <h2>About Skeppsgården</h2>
+                <p>
+                    Skeppsgården is an island in Svärta parish, Nyköping municipality.
+                </p>
+                <p>
+                    The island is located between Romholmen to the west, Marsö to the north, Embeten and Korpholmen to the east, and Långskär to the south. It is named after the farm of the same name on the island, which has been a leasehold farm under Svärta estate since at least the 19th century. The last lease. According to older tradition, the name is said to come from the fact that there used to be a shipyard here.
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="home-contact-card">
+        <a class="redirect-wrapper" method="get" asp-controller="Contact" asp-action="Index">
+            <img src="~/images/site/home-contact.jpg" alt="Skeppsgården Bed & Breakfast" class="home-about-image"/>
+            <div class="home-text-wrapper">
+                <h2>Contacts</h2>
+                <p>
+                    Address: SomeStreeet 1, Skeppsgården
+                    123 45 Somewhere
+                </p>
+                <p>Phone: +46 (0)123 45 67 89</p>
+                <p>Email: contact@bnb.zzz</p>
+                <p>Facebook: <a href="https://www.facebook.com/S" target="_blank">https://www.facebook.com/</a></p>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model X.PagedList.IPagedList<Skeppsgarden.Web.Areas.Admin.ViewModels.RequestViewModel>
+
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/admin-area-request-partial.css" asp-append-version="true"/>
+
+<div id="statusMessageContainer"></div>
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="admin-requests-table-wrapper">
+    <table class="admin-requests-table">
+        <thead class="admin-requests-table-header">
+        <tr class="admin-requests-table-row">
+            <th class="admin-requests-table-cell">Res &#8470;</th>
+            <th class="admin-requests-table-cell">Customer</th>
+            <th class="admin-requests-table-cell">&#10132; Email</th>
+            <th class="admin-requests-table-cell">Room</th>
+            <th class="admin-requests-table-cell">Guests</th>
+            <th class="admin-requests-table-cell">Nights</th>
+            <th class="admin-requests-table-cell">Total</th>
+            <th class="admin-requests-table-cell">Check In</th>
+            <th class="admin-requests-table-cell">Check Out</th>
+            <th class="admin-requests-table-cell">Check In Time</th>
+            <th class="admin-requests-table-cell">Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+        @Html.AntiForgeryToken()
+        @foreach (var req in Model)
+        {
+            <tr class="admin-requests-table-row" onclick="showRequestDetails(this)">
+                @Html.Hidden(@req.Id, req.Id)
+                <td class="admin-requests-table-cell" data-title="Res &#8470;">@req.SequenceNumber</td>
+                <td class="admin-requests-table-cell" data-title="Customer">@req.CustomerName</td>
+                <td class="admin-requests-table-cell" data-title="&#10132; Email">@req.CustomerEmail</td>
+                <td class="admin-requests-table-cell" data-title="Room">@req.Room</td>
+                <td class="admin-requests-table-cell" data-title="Guests">@req.NumberOfGuests</td>
+                <td class="admin-requests-table-cell" data-title="Nights">@req.NumberOfNights</td>
+                <td class="admin-requests-table-cell" data-title="Total">@req.TotalPrice</td>
+                <td class="admin-requests-table-cell" data-title="Check In">@req.CheckIn.ToString("yyyy-MM-dd")</td>
+                <td class="admin-requests-table-cell" data-title="Check Out">@req.CheckOut.ToString("yyyy-MM-dd")</td>
+                <td class="admin-requests-table-cell" data-title="Check In Time">@req.CheckInTime.ToString()</td>
+                <td class="admin-requests-table-cell" data-title="Notes">@req.SpecialRequirements</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+
+@*Pagination with X.PagedList*@
+<div id="paginationContainer" data-url="@Url.Action("RequestedRooms", "AdminPanel", new { area = "Admin" })">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            @Html.PagedListPager(Model, page =>
+            {
+                if (page == 1)
+                    return Url.Action("RequestedRooms");
+                else
+                    return Url.Action("RequestedRooms", new { page });
+            }, new PagedListRenderOptions
+            {
+                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                ContainerDivClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+            })
+        </ul>
+    </nav>
+</div>

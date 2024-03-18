@@ -1,0 +1,55 @@
+/* This file contains the custom styling for the datepicker */
+.qs-datepicker-container {
+    flex-direction: column;
+    z-index: 9001;
+    user-select: none;
+    border: 1px solid var(--color-gray);
+    border-radius: .263921875em;
+    overflow: hidden;
+    background: var(--color-white);
+    box-shadow: 0 1.25em 1.25em -.9375em rgba(0, 0, 0, .3);
+    margin-top: 6px;
+    transform: translateX(-22%);
+}
+
+
+
+/* Styling for the input fields */
+#check-in-date, #check-out-date {
+    background-color: transparent;
+    color: var(--color-white);
+    border-radius: var(--border-radius-8);
+    font-size: 1.3rem;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 0;
+    width: 70%;
+}
+
+ /*Adds some space between the border of the calendar and the dates */
+.qs-squares {
+    margin: 1rem 0.5rem 1.5rem 0.5rem;
+    padding-bottom: 1.7rem;
+    border-bottom: 1px solid var(--color-gray);
+    font-family: 'Roboto', sans-serif;
+}
+
+ /*Styling for the month and year header */
+.qs-controls {
+    /*background: #86b7fe;*/
+    padding: 0.3rem 0;
+    border-bottom: 2px solid #258cfb;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Styling for the day of week squares */
+.qs-square.qs-day{
+    color: var(--color-black);
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+

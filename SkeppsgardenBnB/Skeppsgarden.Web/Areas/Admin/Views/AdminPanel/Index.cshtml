@@ -1,0 +1,45 @@
+
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/admin-area-index-customization.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/custom/admin-area-partial-view.css" class="rel">
+
+
+@section Scripts
+{
+    <script src="~/js/custom/admin-index-on-load.js"></script>
+}
+
+@{
+    ViewBag.Title = "Administrative Panel";
+}
+
+@if (ViewBag.StatusMessage != null)
+{
+    <div id="statusMessage" class="alert alert-success">
+        @ViewBag.StatusMessage
+    </div>
+}
+
+@Html.AntiForgeryToken()
+
+<title class="text-center">@ViewBag.Title</title>
+
+<div class="admin-buttons-container">
+    <hr class="solid">
+    <div class="left-right-divider">
+        <h2>Dashboard</h2>
+    </div>
+    <hr class="solid">
+    <div class="admin-buttons-wrapper">
+        <button id="btnRequests" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("RequestedRooms", "AdminPanel", new { area = "Admin" })')">Requests</button>
+        <button id="btnReservations" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Reservations", "AdminPanel", new { area = "Admin" })')">Reservations</button>
+        <button id="btnCalendar" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Index", "CalendarAdmin", new { area = "Admin" })')">Calendar</button>
+        <button id="btnBlock" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("BlockRoom", "AdminPanel", new { area = "Admin" })')">Block Rooms</button>
+        <button id="btnEvents" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Events", "AdminPanel", new { area = "Admin" })')">Events</button>
+        <button id="btnHyperlinks" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("HyperLinks", "AdminPanel", new { area = "Admin" })')">Hyperlinks</button>
+        <button id="btnEasyAdmin" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("Index", "EasyAdmin", new { area = "Admin" })')">Misc</button>
+        <button id="btnExcel" type="button" class="admin-button" onclick="loadPartialViewOnClick('@Url.Action("ExcelDownload", "AdminPanel", new { area = "Admin" })')">Excel Export</button>
+    </div>
+    <div id="partialViewContainer" class="col-md-9"></div>
+</div>

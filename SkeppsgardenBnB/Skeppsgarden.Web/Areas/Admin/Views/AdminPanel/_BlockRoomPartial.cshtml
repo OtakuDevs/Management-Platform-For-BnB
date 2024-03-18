@@ -1,0 +1,75 @@
+@model Skeppsgarden.Web.Areas.Admin.ViewModels.RoomListViewModel
+
+<link rel="stylesheet" href="~/css/custom/admin-area-blocked-rooms-customization.css" class="rel">
+
+<div id="statusMessageContainer"></div>
+
+<h2 class="text-center">@ViewBag.Title</h2>
+@Html.AntiForgeryToken()
+
+
+<div class="admin-blocked-table-wrapper">
+    <table class="admin-blocked-table">
+        <thead class="admin-blocked-table-header">
+        <tr class="admin-blocked-table-row">
+            <th class="admin-blocked-table-cell">Room Number</th>
+            <th class="admin-blocked-table-cell">Start Date</th>
+            <th class="admin-blocked-table-cell">End Date</th>
+            <th class="admin-blocked-table-cell">Reason</th>
+            <th class="admin-blocked-table-cell">Block</th>
+            <th class="admin-blocked-table-cell">Blocked Dates</th>
+            <th class="admin-blocked-table-cell">Delete Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var room in Model.Rooms)
+        {
+            <tr class="admin-blocked-table-row">
+                <td class="admin-blocked-table-cell">@room.RoomNumber</td>
+                <td class="admin-blocked-table-cell">
+                    <input type="date" name="startDate" form="block-room-@room.Id" id="startDate_@room.Id"/>
+                </td>
+                <td class="admin-blocked-table-cell">
+                    <input type="date" name="endDate" form="block-room-@room.Id" id="endDate_@room.Id"/>
+                </td>
+                <td class="admin-blocked-table-cell">
+                    <input class="block-room-reason" type="text" name="reason" form="block-room-@room.Id" id="reason_@room.Id"/>
+                </td>
+                <td class="admin-blocked-table-cell">
+                    @* Hardcoded action since it's a partial and asp action is not working *@
+                    @* Since on load the url stays as the admin index page, the form doesn't create the correct url *@ 
+                    <form id="block-room-@room.Id" method="post" action="/Admin/AdminPanel/BlockRoom">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@room.Id"/>
+                        <button type="submit" class="btn block-room-button">Block Room</button>
+                    </form>
+                </td>
+                <td class="admin-blocked-table-cell">
+                    <select name="blockedDateId" form="delete-blocked-date-@room.Id">
+                        @if (room.BlockedDates.Count == 0)
+                        {
+                            <option value="">No blocked dates</option>
+                        }
+                        else
+                        {
+                            @foreach (var blockedDate in room.BlockedDates)
+                            {
+                                <option value="@blockedDate.Id">@blockedDate.StartDate.ToString("yyyy-MM-dd") - @blockedDate.EndDate.ToString("yyyy-MM-dd")</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td class="admin-blocked-table-cell">
+                    @* Hardcoded action since it's a partial and form action is not working *@
+                    @* Since on load the url stays as the admin index page, the form doesn't create the correct url *@ 
+                    <form id="delete-blocked-date-@room.Id" method="post" action="/Admin/AdminPanel/DeleteBlockedDate">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="roomId" value="@room.Id"/>
+                        <button type="submit" class="btn delete-date-button">Delete Blocked Date</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,162 @@
+/* SECTION: Local Places */
+
+.local-places-container {
+    width: 90%;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    flex-direction: column;
+    color : var(--color-text-primary);
+    text-shadow:  var(--text-shadow);
+}
+
+.local-place-banner {
+    width: 100%;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10%;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0));
+    }
+    
+    & img {
+        width: 100%;
+        aspect-ratio: 10 / 3;
+        object-fit: cover;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        box-shadow:  var(--box-shadow-all-sides);
+    }
+    
+    & p {
+        /*position: absolute;*/
+        /*bottom: 0;*/
+        /*left: 0;*/
+        padding: 1rem;
+        font-size: 1.5rem;
+        text-align: center;
+        color: var(--color-text-primary);
+        text-shadow:  var(--text-shadow);
+        backdrop-filter: blur(3px);
+        background-color: var(--color-opacity-light-1);
+        border: 1px solid var(--color-opacity-light-2);
+        border-radius: var(--border-radius-8);
+        box-shadow: var(--box-shadow-light);
+    }
+}
+
+.custom-divider {
+    margin: 2rem auto;
+    border-top: 2px solid var(--color-text-primary);
+    border-bottom: 2px solid var(--color-text-primary);
+    padding: 2rem 1rem;
+    
+    & h3 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: var(--color-text-primary);
+        text-shadow:  var(--text-shadow);
+    }
+}
+
+.local-places-cards-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    
+    & .local-places-card{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        backdrop-filter: blur(3px);
+        background-color: var(--color-opacity-light-1);
+        border: 1px solid var(--color-opacity-light-3);
+        border-radius: var(--border-radius-16);
+        box-shadow:  var(--box-shadow-mild-strong);
+        text-decoration: none;
+        color: var(--color-text-primary);
+        text-shadow:  var(--text-shadow);
+        cursor: default;
+        position: relative;
+        
+        .card-text-on-hover{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -100%;
+            transition: left .5s;
+            background: var(--color-opacity-6);
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        &:hover .card-text-on-hover{
+            left: 0;
+            bottom: 0;
+            cursor: pointer;
+        }
+        
+        & img {
+            width: 100%;
+            height: 45vh;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: var(--border-radius-16);
+            border:  1px solid rgba(112, 112, 112, 0.8);
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        
+        .text-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 1rem 1rem 1rem;
+            line-height:  1.5;
+            font-size:  1.3rem;
+            text-align: center;
+            margin-top: 1rem;
+            
+            & h2 {
+                padding: 1rem;
+                background-color:  var(--color-opacity-2);
+                border: 1px solid var(--color-opacity-light-2);
+                border-radius: var(--border-radius-8);
+            }
+            
+            & p {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+/* Mobile view */
+/* Media Queries */
+@media (max-width: 768px) {
+    .local-places-cards-container{
+        grid-template-columns: 1fr;
+    }
+    
+    .local-place-banner {
+        & img {
+            aspect-ratio: 4 / 3;
+        }
+        & p {
+            font-size: 1.3rem;
+            text-align: justify;
+            padding: 1.5rem;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+@model Skeppsgarden.Web.Areas.Admin.ViewModels.FormModels.EventFormModel
+
+@{
+    ViewBag.Title = "Create Event";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr/>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="AddEvent" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label asp-for="@Model.Title" class="form-label-add-edit">Event Title</label>
+                <input asp-for="@Model.Title" name="Title" class="form-control" aria-required="true"/>
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Start" class="form-label-add-edit">Start [Local Time]</label>
+                <input asp-for="@Model.Start" name="Start" type="datetime-local" class="form-control" aria-required="true"/>
+                <span asp-validation-for="@Model.Start" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.End" class="form-label-add-edit">End [Local Time]</label>
+                <input asp-for="@Model.End" name="End" type="datetime-local" class="form-control" aria-required="true"/>
+                <span asp-validation-for="@Model.End" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Description" class="form-label-add-edit">Description</label>
+                <textarea asp-for="@Model.Description" name="Description" class="form-control" aria-required="true"></textarea>
+                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Location" class="form-label-add-edit">Location</label>
+                <input asp-for="@Model.Location" name="Location" class="form-control" aria-required="true"/>
+                <span asp-validation-for="@Model.Location" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <input class="form-control mb-2" type="file" name="file" id="file"/>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <input type="hidden" asp-for="@Model.Id"/>
+                <input class="btn btn-warning mb-2 w-100 p-3 fw-bold" type="submit" value="Save Event"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}

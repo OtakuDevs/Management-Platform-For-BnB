@@ -1,0 +1,165 @@
+@model Skeppsgarden.Web.Areas.Admin.ViewModels.FormModels.ReservationFormModel
+
+<link rel="stylesheet" href="~/css/custom/admin-area-add-reservation.css" asp-append-version="true"/>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <script src="~/js/custom/admin-add-reservation.js"></script>
+    <script>generateSuggestions(@Html.Raw(Json.Serialize(Model.Customers)))</script>
+}
+
+@{
+    ViewBag.Title = "Add a new Reservation";
+    Layout = "_Layout";
+}
+
+@{
+    if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="alert alert-warning" role="alert">
+            @Model.Error
+        </div>
+    }
+}
+
+
+<div class="add-res-container">
+    <h2 class="text-center">Reservation Dashboard - Create a new Reservation</h2>
+    <div class="add-res-wrapper">
+        <form id="multiStepForm" method="post" asp-area="Admin" asp-controller="AdminPanel" asp-action="AddReservation" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div id="step1" class="step">
+                <h1>Room Information</h1>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.Id">Reservation ID</label>
+                    <input id="resId" asp-for="@Model.Id" name="Id" aria-required="true" value="@Model.Id" readonly/>
+                    <span asp-validation-for="@Model.Id" class="text-danger"></span>
+                </div>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.SequenceNumber">Booking Number</label>
+                    <input id="seqNumber" asp-for="@Model.SequenceNumber" name="SequenceNumber" aria-required="true" value="@Model.SequenceNumber" readonly/>
+                    <span asp-validation-for="@Model.SequenceNumber" class="text-danger"></span>
+                </div>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.RoomId">Room Number</label>
+                    <select asp-for="@Model.RoomId" name="RoomId" id="roomDropdown" aria-required="true" required>
+                        <option value="">Select a room</option>
+                        @foreach (var room in Model.Rooms.OrderBy(x => x.Text))
+                        {
+                            <option value="@room.Value" data-room="@room.Text">@room.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="@Model.RoomId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div id="step2" class="step">
+                <h1>Customer Info</h1>
+                <div class="add-res-row-element form-check">
+                    <label id="createCustomerLabel" for="createNewCustomer">
+                        Create a new customer
+                        <input type="checkbox" asp-for="@Model.CreateNewCustomer" id="createNewCustomer"/>
+                    </label>
+                </div>
+                <div class="add-res-row-element-customer" id="newCustomerFields" style="display:none;">
+                    <label asp-for="@Model.NewCustomerFirstName">First Name</label>
+                    <input asp-for="@Model.NewCustomerFirstName" aria-required="false"/>
+                    <span asp-validation-for="@Model.NewCustomerFirstName" class="text-danger"></span>
+
+                    <label asp-for="@Model.NewCustomerLastName">Last Name</label>
+                    <input asp-for="@Model.NewCustomerLastName" aria-required="false"/>
+                    <span asp-validation-for="@Model.NewCustomerLastName" class="text-danger"></span>
+
+                    <label asp-for="@Model.NewCustomerEmail">Email</label>
+                    <input asp-for="@Model.NewCustomerEmail" aria-required="false"/>
+                    <span asp-validation-for="@Model.NewCustomerEmail" class="text-danger"></span>
+
+                    <label asp-for="@Model.NewCustomerPhoneNumber">Phone Number</label>
+                    <input asp-for="@Model.NewCustomerPhoneNumber" aria-required="false"/>
+                    <span asp-validation-for="@Model.NewCustomerPhoneNumber" class="text-danger"></span>
+
+                    <button type="button" class="btn btn-primary" id="submitNewCustomer">Create New Customer</button>
+                </div>
+                <div class="add-res-row-element" id="customerFields">
+                    <label asp-for="@Model.CustomerId">Customer ID</label>
+                    <input type="hidden" name="CustomerId" asp-for="@Model.CustomerId" required id="hiddenForCustomer"/>
+                    <input type="text" list="suggestions" id="customerDropdown" required/>
+                    <datalist id="suggestions"></datalist>
+                    <span asp-validation-for="@Model.CustomerId" class="text-danger"></span>
+                    <span id="noMatchMessage" class="text-danger" style="display: none;">No existing customer found. Please select an existing one or create a new one.</span>
+                </div>
+            </div>
+
+            <div id="step3" class="step">
+                <h1>Reservation Info</h1>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.NumberOfGuests">Number of Guest</label>
+                    <input type="number" name="NumberOfGuests" asp-for="@Model.NumberOfGuests" min="0" placeholder="Enter number of Guests" required/>
+                    <span asp-validation-for="@Model.NumberOfGuests" class="text-danger"></span>
+                </div>
+
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.CheckIn">Check-in Date</label>
+                    <input id="checkIn" type="date" name="CheckIn" asp-for="@Model.CheckIn" required/>
+                    <span asp-validation-for="@Model.CheckIn" class="text-danger"></span>
+                </div>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.CheckOut">Check-out Date</label>
+                    <input id="checkOut" type="date" name="CheckOut" asp-for="@Model.CheckOut" required/>
+                    <span asp-validation-for="@Model.CheckOut" class="text-danger"></span>
+                </div>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.CheckInTime">Requested Check-in Time</label>
+                    <input type="time" name="CheckInTime" asp-for="@Model.CheckInTime" required/>
+                    <span asp-validation-for="@Model.CheckInTime" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div id="step4" class="step">
+                <h1>Additional Details</h1>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.SpecialRequirements">Customer Requirements</label>
+                    <textarea rows="6" name="SpecialRequirements" asp-for="@Model.SpecialRequirements" aria-required="false" placeholder="Enter any special requirements"></textarea>
+                    <span asp-validation-for="@Model.SpecialRequirements" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div id="step5" class="step">
+                <h1>Staff Notes</h1>
+                <div class="add-res-row-element">
+                    <label asp-for="@Model.NotesToCustomer">Staff Notes To Customer</label>
+                    <textarea rows="6" name="NotesToCustomer" asp-for="@Model.NotesToCustomer" aria-required="false" placeholder="Enter any notes to customer"></textarea>
+                    <span asp-validation-for="@Model.NotesToCustomer" class="text-danger"></span>
+                </div>
+
+                <div class="add-res-submit-element">
+                    <input class="btn btn-warning" type="submit" value="Add Reservation"/>
+                </div>
+            </div>
+            <div class="add-res-row-buttons">
+                <button type="button" id="prevBtn">Previous</button>
+                <button type="button" id="nextBtn">Next</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="validationModal" style="display: none; color: black">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="validationModalLabel">Validation Error</h5>
+                <button type="button" class="btn btn-secondary" onclick="closeValidationModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="validationMessage">Please fill in all required fields.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeValidationModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,133 @@
+.admin-blocked-table-wrapper {
+    overflow-x: auto;
+    background: transparent;
+    width: 90vw;
+}
+
+.admin-blocked-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    color: var(--color-black);
+    background-color: var(--color-background-glass-light);
+    border: 1px solid var(--color-background-glass-light);
+    box-shadow: var(--box-shadow-all-sides);
+}
+
+.admin-blocked-table-header {
+    background: var(--color-opacity-2);
+    border-bottom: 2px solid var(--color-background-glass-light);
+}
+
+.admin-blocked-table th,
+.admin-blocked-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    max-width: 150px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-blocked-table-row:nth-child(even) {
+    background-color: var(--color-opacity-2);
+}
+
+.block-room-button,
+.delete-date-button,
+input[type="date"],
+.block-room-reason,
+select {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: var(--border-radius-8);
+    border: none;
+    background-color: var(--color-opacity-2);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; /* Add a transition for hover effects */
+}
+
+.block-room-button:hover,
+.delete-date-button:hover,
+input[type="date"]:hover,
+select:hover {
+    transform: scale(1.1);
+}
+
+
+.delete-date-button {
+    background-color: var(--color-danger);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+input[type="date"]:focus,
+.block-room-reason:focus,
+select:focus {
+    outline: none;
+}
+
+select {
+    font-size: 0.9rem;
+}
+
+/* Mobile view */
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .admin-blocked-table-wrapper {
+        width: 100%;
+    }
+
+    .admin-blocked-table {
+        width: 100%;
+    }
+
+    .admin-blocked-table th,
+    .admin-blocked-table td {
+        padding: 5px;
+    }
+
+    .block-room-button,
+    .delete-date-button,
+    input[type="date"],
+    .block-room-reason,
+    select {
+        padding: 0.5rem 0.8rem;
+        margin: 0.5rem;
+    }
+
+    .admin-blocked-table th,
+    .admin-blocked-table td {
+        padding: 5px;
+    }
+
+    .block-room-button,
+    .delete-date-button,
+    input[type="date"],
+    .block-room-reason,
+    select {
+        padding: 0.5rem 0.8rem;
+        margin: 0.5rem;
+        border-radius: var(--border-radius-8);
+        border: none;
+        background-color: var(--color-opacity-2);
+        color: var(--color-text-primary);
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out; /* Add a transition for hover effects */
+    }
+    
+    .delete-date-button {
+        background-color: var(--color-danger);
+    }
+    
+    .block-room-button {
+        background-color: var(--color-success);
+    }
+}

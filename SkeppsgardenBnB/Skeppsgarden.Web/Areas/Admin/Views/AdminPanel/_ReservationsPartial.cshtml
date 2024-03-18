@@ -1,0 +1,95 @@
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model X.PagedList.IPagedList<Skeppsgarden.Web.Areas.Admin.ViewModels.ReservationViewModel>
+
+<link rel="stylesheet" href="~/css/custom/admin-area-reservation-partial.css" asp-append-version="true"/>
+
+<div id="statusMessageContainer"></div>
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="buttons-container">
+    <div class="admin-buttons-wrapper">
+        <button form="addRes" type="submit" class="admin-button">Add Reservation</button>
+        <button form="archiveRes" type="submit" class="admin-button">Archive Old Reservations</button>
+    </div>
+</div>
+<form id="addRes" action="@Url.Action("AddReservation", "AdminPanel", new { area = "Admin" })" method="get">
+</form>
+
+<form id="archiveRes" action="@Url.Action("ArchiveOlderReservations", "AdminPanel")" method="post">
+    @Html.AntiForgeryToken()
+</form>
+
+
+<div class="admin-reservations-table-wrapper">
+    <table class="admin-reservations-table">
+        <thead class="admin-reservations-table-header">
+        <tr class="admin-reservations-table-row">
+            <th class="admin-reservation-table-cell">Res &#8470;</th>
+            <th class="admin-reservation-table-cell">Customer</th>
+            <th class="admin-reservation-table-cell">&#10132; Email</th>
+            <th class="admin-reservation-table-cell">Room</th>
+            <th class="admin-reservation-table-cell">Guests</th>
+            <th class="admin-reservation-table-cell">Nights</th>
+            <th class="admin-reservation-table-cell">Total</th>
+            <th class="admin-reservation-table-cell">Check In</th>
+            <th class="admin-reservation-table-cell">Check Out</th>
+            <th class="admin-reservation-table-cell">Check In Time</th>
+            <th class="admin-reservation-table-cell res-notes">Notes - From</th>
+            <th class="admin-reservation-table-cell res-notes">Notes - To</th>
+            <th class="admin-reservation-table-cell">Archive</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr class="admin-reservations-table-row" onclick="showReservationDetails(this)">
+                <td class="admin-reservation-table-cell" data-title="Res &#8470;">@booking.SequenceNumber</td>
+                <td class="admin-reservation-table-cell" data-title="Customer">@booking.CustomerName</td>
+                <td class="admin-reservation-table-cell" data-title="&#1032; Email">@booking.CustomerEmail</td>
+                <td class="admin-reservation-table-cell" data-title="Room">@booking.Room</td>
+                <td class="admin-reservation-table-cell" data-title="Guests">@booking.NumberOfGuests</td>
+                <td class="admin-reservation-table-cell" data-title="Nights">@booking.NumberOfNights</td>
+                <td class="admin-reservation-table-cell" data-title="Total">@booking.TotalPrice</td>
+                <td class="admin-reservation-table-cell" data-title="Check In">@booking.CheckIn.ToString("yyyy-MM-dd")</td>
+                <td class="admin-reservation-table-cell" data-title="Check Out">@booking.CheckOut.ToString("yyyy-MM-dd")</td>
+                <td class="admin-reservation-table-cell" data-title="Check In Time">@booking.CheckInTime.ToString()</td>
+                <td class="admin-reservation-table-cell res-notes" data-title="Notes - From">@booking.SpecialRequirements</td>
+                <td class="admin-reservation-table-cell res-notes" data-title="Notes - To">@booking.NotesToCustomer</td>
+                <td class="admin-reservation-table-cell" data-title="Archive">
+                    @using (Html.BeginForm("ArchiveReservation", "AdminPanel", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("id", booking.Id)
+                        <input type="submit" class="btn btn-danger" value="Archive"/>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+
+@*Pagination with X.PagedList*@
+<div id="paginationContainer" data-url="@Url.Action("Reservations", "AdminPanel", new { area = "Admin" })">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            @Html.PagedListPager(Model, page =>
+            {
+                if (page == 1)
+                    return Url.Action("Reservations");
+                else
+                    return Url.Action("Reservations", new { page });
+            }, new PagedListRenderOptions
+            {
+                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                ContainerDivClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+            })
+        </ul>
+    </nav>
+</div>

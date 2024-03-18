@@ -1,0 +1,69 @@
+@model Skeppsgarden.Web.ViewModels.Event.EventListViewModel
+
+<link rel="stylesheet" href="~/css/custom/events-customization.css" class="rel">
+
+@section Scripts {
+    <script src="~/js/custom/event-details.js"></script>
+}
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "_Layout";
+}
+<div class="events-container">
+    <div class="events-header">
+        <h2>Upcoming Events</h2>
+        <p>Join us at our next event to discover what's happening at our B&amp;B. Reserve your spot today!</p>
+    </div>
+
+    <div class="events-body">
+        @foreach (var ev in Model.Events)
+        {
+            <div class="event-row-element" onclick="openEventModal(this)">
+                <input type="hidden" id="is-in-past" value="@ev.IsInPast.ToString()"/>
+                <div class="event-image">
+                    <img src="@Url.Content(ev.Image)" alt="@ev.Title"/>
+                    <input type="hidden" id="input-image" value="@ev.Image"/>
+                </div>
+                <div class="event-details">
+                    <div class="event-title-location">
+                        <p>@ev.Title</p>
+                        <p>Location: @ev.Location</p>
+                    </div>
+                    <div class="event-start-end">
+                        <p>Start: @ev.Start</p>
+                        <p>End: @ev.End</p>
+                    </div>
+                    <div class="text-on-hover">
+                        <input type="hidden" id="input-description" value="@ev.Description"/>
+                        <p>Click for more details</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="event-details-modal" id="event-modal">
+    <div class="event-modal-content">
+        <div class="title-wrapper">
+            <h1 class="event-modal-title">Event Details</h1>
+            <span class="close-button" onclick="closeEventModal()">&times;</span>
+        </div>
+        <img class="event-modal-img" src="" alt=""/>
+        <div class="event-modal-details">
+            <div class="event-title-location">
+                <p id="event-title">Event Title: </p>
+                <p id="event-location">Event Location: </p>
+            </div>
+            <div class="event-start-end">
+                <p id="event-start">Start: Event Start: </p>
+                <p id="event-end">End: Event End: </p>
+            </div>
+
+            <div class="event-description">
+                <p id="event-description">Event Description: </p>
+            </div>
+        </div>
+    </div>
+</div>

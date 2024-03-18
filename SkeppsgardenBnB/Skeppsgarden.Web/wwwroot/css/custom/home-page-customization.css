@@ -1,0 +1,338 @@
+/* SECTION: Home - main card */
+
+.home-logo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: url("../../images/site/home-logo-banner.jpg");
+    background-size: cover;
+
+    & .home-logo-image {
+        width: 55%;
+        height: 30%;
+        max-height: 250px;
+        margin-left: 26%;
+        object-fit: cover;
+        overflow: hidden;
+    }
+}
+
+.home-header-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 3rem 3rem ;
+    position: relative;
+    background: linear-gradient(to left,
+    rgba(101, 104, 57, 0.4),
+    rgba(101, 104, 57, 0.2),
+    rgba(101, 104, 57, 0),
+    rgba(101, 104, 57, 0.2),
+    rgba(101, 104, 57, 0.4));
+    
+    &::before {
+        content: "";
+        width: 100%;
+        height: 20px;
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+        position: absolute;
+        top: 0
+    }
+
+    &::after {
+        content: "";
+        width: 100%;
+        height: 20px;
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+        position: absolute;
+        bottom: 0
+    }
+    
+    & .home-header-title {
+        width: 100%;
+        font:  3rem "Times New Roman", Times, serif;
+        letter-spacing: 0.2rem;
+        text-align: left;
+        color: #d5bb7c;
+        text-shadow: var(--text-shadow);
+    }
+    
+    & .home-header-text-body {
+        width: 100%;
+        margin:  1rem 1rem;
+        padding: 1rem 0 0 1rem;
+        font:  1.5rem "Times New Roman", Times, serif;
+        letter-spacing: 0.1rem;
+        text-align: left;
+        color: var(--color-text-primary);
+        background-color:  var(--color-opacity-3);
+        text-shadow: 3px 3px 4px var(--color-opacity-8);
+        border-radius: 1rem 0 0 0;
+        box-shadow:  -5px -5px 4px rgba(0, 0, 0, 0.6);
+        
+        & .home-header-text {
+            padding: 0.5rem;
+        }
+    }
+}
+
+.booking-link-cards {
+    width: 90%;
+    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    gap: 2rem;
+    
+    & .booking-link-card {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(3px);
+        background-color: var(--color-opacity-light-1);
+        border: 2px solid var(--color-opacity-light-3);
+        border-radius: var(--border-radius-16);
+        box-shadow: var(--box-shadow-mild);
+        text-decoration: none;
+        transition:  transform 0.3s ease;
+        overflow: hidden;
+
+        &:hover {
+            background-color: var(--color-opacity-light-2);
+            border: 2px solid var(--color-opacity-light-5);
+            transform:  scale(1.05);
+        }
+        
+        & .booking-link-text {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            text-shadow:  var(--text-shadow-light);
+            text-align: center;
+        }
+    }
+
+    & img{
+        width: 100%;
+        height: 60%;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 1rem 1rem 0 0;
+        border-bottom: 2px solid var(--color-opacity-light-2);
+        transition:  transform 0.3s ease;
+
+        &:hover {
+            transform:  scale(1.05);
+        }
+    }
+
+    & h2 {
+        font-size: 1.5rem;
+        color: var(--color-text-primary);
+        margin: 2rem 0 1rem 0;
+        text-shadow:  var(--text-shadow-light);
+        text-decoration: underline;
+    }
+
+    & p {
+        font-size: 1.2rem;
+        color: var(--color-text-primary);
+        text-shadow:  var(--text-shadow-light);
+    }
+}
+
+/* Infinite Image scroll */
+.scroller {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    border-radius: var(--border-radius-16);
+    border: 1px solid var(--color-white);
+    background-color: rgb(25, 46, 47, 0.7);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.scroller img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.scroller-inner {
+    width: 100%;
+    height: 100%;
+    padding-block: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.scroller[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+}
+
+.scroller[data-animated="true"] .scroller-inner {
+    width: max-content;
+    flex-wrap: nowrap;
+    -webkit-animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+
+}
+
+.scroller[data-direction="right"] {
+    --_animation-direction: reverse;
+}
+
+.scroller[data-speed="slow"] {
+    --_animation-duration: 90s;
+}
+
+@keyframes scroll {
+    to {
+        transform: translate(calc(-50% - 0.5rem));
+    }
+}
+
+/* Home Footer Section */
+.home-footer-container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem auto;
+
+    & .redirect-wrapper {
+        text-decoration: none;
+        width: 100%;
+    }
+    
+    & .home-about-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--color-opacity-light-1);
+        border: 2px solid var(--color-opacity-light-3);
+        border-radius: var(--border-radius-16);
+        box-shadow: var(--box-shadow-mild);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    & .home-contact-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--color-opacity-light-1);
+        border: 2px solid var(--color-opacity-light-3);
+        border-radius: var(--border-radius-16);
+        box-shadow: var(--box-shadow-mild);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    & .home-about-card:hover,
+    & .home-contact-card:hover {
+        background-color: var(--color-opacity-light-2);
+        border: 2px solid var(--color-opacity-light-5);
+        transform:  scale(1.03);
+        cursor: pointer;
+    }
+    
+    & .home-text-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem 2rem;
+
+        & h2 {
+            width: 100%;
+            font-size: 3rem;
+            color: var(--color-text-primary);
+            text-align: center;
+            margin: 0 auto 1rem auto;
+            padding-bottom: 0.5rem;
+            text-shadow:  var(--text-shadow-light);
+            border-bottom:  2px solid var(--color-opacity-3);
+        }
+
+        & p {
+            color: var(--color-text-primary);
+            text-align: left;
+            text-shadow:  var(--text-shadow-light);
+        }
+        
+        & a {
+            color: var(--color-nav-hover);
+            text-align: left;
+            text-shadow:  var(--text-shadow-light);
+            text-decoration: none;
+            transition:  transform 0.3s ease;
+            
+            &:hover {
+                color: rgba( 205, 175, 0, 0.8);
+            }
+        }
+    }
+    
+    & img {
+        width: 100%;
+        height: 300px; 
+        max-height: 300px; 
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 1rem 1rem 0 0;
+        border-bottom: 2px solid var(--color-opacity-3);
+        transition:  transform 0.3s ease;
+
+        &:hover {
+            transform:  scale(1.05);
+        }
+    }
+}
+
+/* Mobile view */
+/* Media Queries */
+@media (max-width: 768px) {
+    .home-header-wrapper {
+        padding: 2rem 1rem;
+        
+        & .home-header-text-body {
+            padding: 1rem 1rem 0 1rem;
+        }
+        
+        & .home-header-text {
+            text-align: justify;
+        }
+    }
+
+    .booking-link-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .home-footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .home-about-card {
+        & .home-text-wrapper p {
+            text-align: justify;
+        }
+    }
+
+    #body-container > main > div.home-footer-container > div.home-contact-card > div > p > a:nth-child(2) {
+        font-size:  0.95rem;
+    }
+}

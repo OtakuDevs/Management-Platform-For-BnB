@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  webapp:
+    image: kaiserdmc/skeppsgardenbnb:1.0
+    container_name: skeppsgardenbnb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - GoogleMapApi:ApiKey=${GOOGLE_MAP_API_KEY}
+      - Email:UsernameKey=${EMAIL_USERNAME_KEY}
+      - Email:PassKey=${EMAIL_PASS_KEY}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=skeppsgardenbnb_database
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - skeppsgardenbnb_network
+    depends_on:
+      - postgres
+    volumes:
+      - webapp-data:/app/data
+
+  postgres:
+    image: postgres:16.2
+    container_name: skeppsgardenbnb_db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=skeppsgardenbnb_database
+    ports:
+      - "5432:5432"
+    networks:
+      - skeppsgardenbnb_network
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+networks:
+  skeppsgardenbnb_network:
+    driver: bridge
+
+volumes:
+  webapp-data:
+  postgres-data:

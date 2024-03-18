@@ -1,0 +1,279 @@
+
+.contact-container {
+    width: 90%;
+    margin: 0 auto;
+    padding:  1rem 0;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text-primary);
+    text-shadow: var(--text-shadow);
+}
+
+.contact-image-wrapper {
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius:  var(--border-radius-8);
+    background-color:  var(--color-opacity-4);
+    background-size: cover;
+    box-shadow: var(--box-shadow-all-sides-inset), var(--box-shadow-mild-strong);
+    
+    
+    & h1 {
+        font-size: 3rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        text-decoration: underline;
+    }
+    
+    & img {
+        width: 100%;
+        aspect-ratio: 16 / 2;
+        object-fit: contain;
+        background: transparent;
+        border-radius:  var(--border-radius-8);
+    }
+}
+
+.contact-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.contact-card-wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    
+    & .contact-card{
+        width: 100%;
+        padding: 2rem 3rem;
+        border-radius: var(--border-radius-8);
+        background:  var(--color-opacity-2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 1rem;
+        border: 2px solid var(--color-opacity-3);
+        box-shadow: var(--box-shadow-mild-strong);
+        
+        & .contact-row {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            border-bottom: 1px solid var(--color-divider);
+            
+            & h2 {
+                width: 20%;
+                text-align: end;
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+            }
+            
+            & p {
+                width: 80%;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                margin: 0;
+            }
+            
+            & a {
+                width: 80%;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                margin: 0;
+                text-decoration: none;
+                color: var(--color-nav-hover);
+                transition: hover 0.3s;
+                
+                &:hover {
+                    color: rgba( 205, 175, 0, 0.8);
+                }
+            }
+        }
+    }
+    
+    & .contact-card:last-child {
+        & p {
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-divider);
+        }
+        
+        & h2 {
+            margin: 0.5rem 0 0 0;
+        }
+    }
+}
+
+.contact-row-element {
+    width:  100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:  var(--color-opacity-2);
+    padding: 2rem 3rem;
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-mild-strong);
+    margin-bottom: 3rem;
+    border: 2px solid var(--color-opacity-3);
+    
+    & h2 {
+        font-size: 2rem;
+        margin: 1rem 0;
+    }
+    
+    & p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        border-bottom:  1px solid var(--color-divider);
+    }
+    
+    & a {
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: var(--color-nav-hover);
+        transition: hover 0.3s;
+        
+        &:hover {
+            color: rgba( 205, 175, 0, 0.8);
+        }
+    }
+}
+
+.map-container {
+    width: 90%;
+    margin: 0 auto;
+    aspect-ratio: 7 / 4;
+    display: flex;
+    flex-direction: column;
+    
+}
+.map-banner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 2rem auto;
+    gap: 2rem;
+
+    & .map-title {
+        font-size: 2.5rem;
+        color: var(--color-text-primary);
+        text-shadow: var(--text-shadow);
+        border-bottom:  1px solid var(--color-text-primary);
+        margin: 0;
+    }
+
+    & .directions-container {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        margin-left: auto;
+
+        & label, input, button {
+            font-size: 1.2rem;
+            border-radius: var(--border-radius-8);
+            display: flex;
+            align-items: center;
+            border: none;
+            color:  var(--color-text-primary);
+            text-shadow:  var(--text-shadow);
+        }
+
+        & label {
+            padding: 0 1rem;
+            border-bottom:  1px solid var(--color-text-primary);
+            border-radius: 0;
+        }
+
+        & input, button {
+            background:  var(--color-opacity-2);
+            padding: 0 2rem;
+        }
+
+        & input::placeholder{
+            color:  var(--color-gray);
+            text-shadow:  var(--text-shadow);
+        }
+
+        & input:focus {
+            outline: none;
+            border: 1px solid var(--color-text-primary);
+        }
+
+        & button:hover {
+            background:  var(--color-opacity-3);
+            color:  var(--color-nav-hover);
+        }
+    }
+}
+
+.map-holder {
+    width: 100%;
+    aspect-ratio: 7 / 4;
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-all-sides);
+}
+
+/* Responsive Design */
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    
+    .contact-container {
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    
+    .contact-card-wrapper {
+        width: 100%;
+        grid-template-columns: 1fr; /* Change to one column for smaller screens */
+    }
+
+    .contact-card {
+        width: 100%!important;
+        padding: 2rem 2rem !important;
+        margin: 0 auto !important;
+    }
+    
+    .contact-row-element {
+        width: 100%;
+        padding: 2rem 2rem;
+        margin-bottom: 0;
+    }
+    
+    .map-container {
+        width: 100%;
+    }
+    
+    .map-banner {
+        flex-direction: column;
+        gap: 1rem;
+        margin: 2rem auto;
+        
+        .map-title {
+            font-size: 2rem;
+            padding: 0 1rem 1rem 1rem;
+            text-align: center;
+        }
+    }
+    
+    .map-holder {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+    
+}

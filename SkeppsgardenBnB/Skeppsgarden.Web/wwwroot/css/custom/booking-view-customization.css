@@ -1,0 +1,464 @@
+
+.search-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 83vh;
+    background-image:  url("../../images/site/add-reservation.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index:  1;
+}
+
+
+.search-button-container input[type="text"],
+#number-of-people {
+    display: block;
+    background-color: transparent;
+    color: var(--color-black) !important;
+    border-radius: var(--border-radius-8);
+    font-size: 1.3rem;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    width: 100%;
+    border: none;
+
+}
+
+#number-of-people {
+    padding: 0.5rem 1rem;
+    text-align: start;
+    width: 70% !important;
+    background-color: var(--color-white);
+}
+
+option:not(:checked) {
+    color: var(--color-darkgray);
+}
+
+option:checked {
+    color: var(--color-darkgray);
+}
+
+/*This is the container which holds the calendar and the input fields */
+.datepicker-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem auto;
+    gap: 3rem;
+    width: 100%;
+    padding: 0 3rem;
+    height: 15vh;
+    backdrop-filter: blur(3px);
+    background-color: var(--color-opacity-3);
+    border: 1px solid var(--color-background-glass-light);
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-mild-strong);
+}
+
+.datepicker-input-row-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 40%;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-8);
+}
+
+.datepicker-input-row-element:nth-child(3) {
+    width: 30%;
+}
+
+.datepicker-input-container i {
+    color: var(--color-darkgray);
+    opacity: 0.7;
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+    padding: 5px 0.5rem;
+}
+
+/*Styling for the submit button */
+#search-rooms-button {
+    border-radius: var(--border-radius-8);
+    padding: 0.3rem 1.7rem;
+    background-color: var(--color-pink);
+    color: var(--color-white);
+    font-size: 1.3rem;
+}
+
+.search-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 0 auto;
+    padding: 3.5rem 0 0 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-opacity-1);
+    color: var(--color-text-primary);
+    text-shadow: var(--text-shadow);
+}
+
+.search-details-row-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto 0 auto;
+    padding: 1rem 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-opacity-5);
+}
+
+.search-details-row-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1rem 0;
+    width: 100%;
+    height: 100%;
+}
+
+.search-details-row-element p {
+    margin: 0;
+}
+
+.search-details-row-element i {
+    color: var(--color-darkgray);
+    opacity: 0.7;
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+    padding: 5px 0.5rem;
+}
+
+/* Room Listing Styling */
+
+/* Styling for the room listing container */
+.room-listing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    color: var(--color-black);
+}
+
+.table-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    background-color: var(--color-opacity-2);
+}
+
+/* Select the table element */
+table, .room-listing {
+    width: 93%;
+    border-collapse: collapse;
+    border-radius: var(--border-radius-8);
+    background-color: rgba(227, 233, 206, 0.8);
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.room-listing-header {
+    margin: 0 auto;
+    background-color:  rgba(101, 104, 57, 0.5);
+}
+
+/* Select the table header cells */
+th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+/* Select the table data cells */
+td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+td:not(:first-child, :last-child, :nth-last-child(2))::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-opacity-5);
+}
+
+/* Select the image cell */
+td:first-child {
+    width: 300px;
+}
+
+/* Select the action cells */
+td:last-child,
+td:nth-last-child(2) {
+    width: 150px;
+}
+
+.room-listing-row-element {
+    box-shadow: 0 7px 5px rgba(0, 0, 0, 0.8); !important;
+}
+
+.room-listing-row-element img {
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-all-sides);
+}
+
+.message-row p{
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-darkred);
+    text-align: start;
+    margin-left: 2rem;
+    border-bottom:  1px solid var(--color-darkred);
+}
+
+#price-discount {
+    color: var(--color-darkred);
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-right: 0.5rem;
+    text-decoration: line-through;
+}
+
+.booking-link-cards-header{
+    margin: 2rem auto 3rem auto;
+    color: var(--color-text-primary);
+    text-shadow:  var(--text-shadow);
+    text-align: center;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+    
+    & h1 {
+        font-size: 2.5rem;
+        text-decoration: underline;
+        margin: 2rem 0;
+    }
+    
+    & p {
+        font-size: 1.5rem;
+        margin: 2rem 0;
+    }
+}
+
+.booking-link-cards {
+    width: 90%;
+    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    gap: 2rem;
+
+    
+    
+    & .booking-link-card {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(3px);
+        background-color: var(--color-opacity-light-1);
+        border: 2px solid var(--color-opacity-light-3);
+        border-radius: var(--border-radius-16);
+        box-shadow: var(--box-shadow-mild);
+        text-decoration: none;
+        transition:  transform 0.3s ease;
+        overflow: hidden;
+        
+        &:hover {
+            background-color: var(--color-opacity-light-2);
+            border: 2px solid var(--color-opacity-light-5);
+            transform:  scale(1.05);
+        }
+
+        & .booking-link-text {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            text-shadow:  var(--text-shadow-light);
+            text-align: center;
+        }
+    }
+    
+    & img{
+        width: 100%;
+        height: 60% !important;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 1rem 1rem 0 0;
+        border-bottom: 2px solid var(--color-opacity-light-2);
+        transition:  transform 0.3s ease;
+        
+        &:hover {
+            transform:  scale(1.05);
+        }
+    }
+    
+    & h2 {
+        font-size: 1.5rem;
+        color: var(--color-text-primary);
+        margin: 2rem 0 1rem 0;
+        text-shadow:  var(--text-shadow);
+        text-decoration: underline;
+    }
+    
+    & p {
+        font-size: 1.2rem;
+        color: var(--color-text-primary);
+        text-shadow:  var(--text-shadow);
+    }
+}
+
+.no-rooms-available {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem auto;
+    padding: 2rem;
+    width: 90%;
+    background-color: var(--color-opacity-2);
+    border: 2px solid var(--color-opacity-light-3);
+    border-radius: var(--border-radius-16);
+    box-shadow: var(--box-shadow-mild);
+    text-align: center;
+    color: var(--color-text-primary);
+    text-shadow:  var(--text-shadow);
+    font-size:  1.5rem;
+}
+
+/* Mobile view */
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .search-button-container {
+        height: 100vh;
+    }
+    
+    .search-button-container input[type="text"],
+    #number-of-people {
+        font-size: 1.2rem;
+    }
+    
+    .datepicker-input-container {
+        flex-direction: column;
+        gap: 1rem;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        height: 30vh;
+    }
+    
+    .datepicker-input-row-element {
+        width: 90%;
+    }
+    
+    .datepicker-input-row-element:nth-child(3) {
+        width: 80%;
+    }
+    
+    .search-details-container {
+        padding: 2rem 0 0 0;
+    }
+    
+    .search-details-row-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+        margin: 2rem auto 0 auto;
+        padding: 1rem 0;
+    }
+    
+    .search-details-row-element {
+        flex-direction: column;
+        gap: 1rem;
+        margin: 0 auto;
+        padding: 1rem 0;
+    }
+    
+    .search-details-row-element p {
+        margin: 0;
+    }
+    
+    .search-details-row-element i {
+        margin-right: 0;
+    }
+    
+    
+    .booking-link-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .booking-link-cards .booking-link-card {
+        width: 100%;
+    }
+    
+    .booking-link-cards img {
+        height: 50vh;
+    }
+    
+    .room-listing-container {
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .table-wrapper {
+        width: 100%;
+        padding: 1rem 0;
+        overflow: auto;
+        flex-direction: column;
+    }
+    
+    .room-listing {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .room-listing-header {
+        display: none;
+    }
+    
+    .room-listing-row-element {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        & td {
+            width: 100%;
+        }
+        
+        img {
+            width: 100% !important;
+            height: auto;
+            max-height: 200px;
+            margin: 0 auto;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 1rem 1rem 0 0;
+            border-bottom: 2px solid var(--color-opacity-light-2);
+        }
+    }
+
+    td[colspan="8"] {
+        width: 100%;
+    }
+
+}
+

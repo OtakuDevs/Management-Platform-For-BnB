@@ -1,0 +1,39 @@
+@model ActivityCollectionViewModel
+
+<link rel="stylesheet" href="~/css/custom/activities-customization.css" class="rel">
+
+@{
+    ViewBag.Title = "Activities in the vicinity";
+    Layout = "_Layout";
+}
+
+
+<div class="activities-container">
+    <h2>Activities in the vicinity of Skeppsgarden</h2>
+    <div class="image-wrapper">
+        <div class="image-wrapper-text">
+            <hr/>
+            <p>
+                Pack a small picnic and hike in the outer archipelago.
+                One of two parts of the Östgötaleden trail runs along the outer coastline, on Åsvikslandet.
+                Maybe catch some herring after your breakfast (April-May) or just sit and fish in the glitter from the water.
+                In the beautiful archipelago area in Valdemarsvik municipality, Gryts and Tjust archipelagos, there are many activities to do, whether you are familiar or unfamiliar with nature, seeking a calm or adventurous holiday. Or if you want to take a boat trip, or eat good food. Fantastic and unique hiking trails in the Åsvikelandet nature reserve! You walk in the forest, on meadows, and along the shores of the Baltic Sea in one and the same hike.
+            </p>
+            <hr/>
+        </div>
+        <div class="image-container">
+            <img id="hover-map" src="~/images/activities/hiking-map-hover.png" alt="Main Banner">
+            <img id="default-map" src="~/images/activities/hiking-map.png" alt="Main Banner">
+        </div>
+
+    </div>
+    <div class="activities-wrapper">
+        @foreach (var activity in Model.Activities)
+        {
+            <div class="activity-row-element">
+                <p>&ldquo; @activity.Description &#8221;</p>
+                <img src="@Url.Content(activity.ImageUrl)" alt="@activity.Name">
+            </div>
+        }
+    </div>
+</div>

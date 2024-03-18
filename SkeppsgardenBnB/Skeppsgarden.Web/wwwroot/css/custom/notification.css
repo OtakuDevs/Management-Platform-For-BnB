@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.Message {
+    display: none;
+    position: absolute;
+    text-align: left;
+    top: 4vh;
+    right: 0;
+    z-index: 9999;
+    margin: 40px auto 0 auto;
+    width: 500px;
+    background-color: #2980B9;
+    color: var(--color-white);
+    transition: all 1s ease;
+    opacity: 1;
+}
+
+
+.Message--orange {
+    backdrop-filter: blur(3px);
+    background-color: var(--color-opacity-light-4);
+    border: 1px solid var(--color-opacity-light-2);
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-light);
+    color: var(--color-black);
+}
+
+.Message .request-count-element {
+    color: var(--color-black);
+    text-decoration: none;
+    display: block;
+    padding: 30px;
+    text-align: center;
+    background-color: var(--color-opacity-4);
+    transition: all 0.3s ease;
+    font-size: 1.3rem;
+}
+
+.Message .request-count-element:hover {
+    background-color: var(--color-opacity-6);
+}
+
+.Message p {
+    padding: 20px;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.Message .request-count-element span {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--color-white);
+    text-shadow: var(--text-shadow-light);
+}
+
+.Message-body {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 30px 20px 30px 10px;
+
+    > p {
+        line-height: 1.2;
+        margin-top: 6px;
+    }
+}
+
+.Message-close {
+    position: absolute;
+    background-color: var(--color-opacity-3);
+    color: var(--color-white);
+    border: none;
+    outline: none;
+    font-size: 20px;
+    right: 5px;
+    top: 5px;
+    opacity: 0;
+    cursor: pointer;
+
+    .Message:hover & {
+        opacity: 1;
+    }
+
+    &:hover {
+        background-color: var(--color-opacity-5);
+    }
+}
+
+#notification-icon {
+    position: relative;
+    z-index: 2;
+    border-radius:  50%;
+}
+
+#notification-icon:hover {
+    cursor: pointer;
+}
+
+.animate-notification-icon{
+    animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 13px rgba(0, 0, 0, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+/* Mobile view */
+/* Media Queries */
+@media (max-width: 768px) {
+    .Message {
+        width: 100%;
+        top: 0;
+        left: 0;
+        margin: 0;
+    }
+}

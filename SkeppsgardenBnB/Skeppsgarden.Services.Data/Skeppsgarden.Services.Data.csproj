@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\Calculator\Calculator.csproj" />
+      <ProjectReference Include="..\MailProvider\MailProvider.csproj" />
+      <ProjectReference Include="..\Skeppsgarden.Data\Skeppsgarden.Data.csproj" />
+      <ProjectReference Include="..\Skeppsgarden.Web\Skeppsgarden.Web.ViewModels\Skeppsgarden.Web.ViewModels.csproj" />
+    </ItemGroup>
+
+</Project>

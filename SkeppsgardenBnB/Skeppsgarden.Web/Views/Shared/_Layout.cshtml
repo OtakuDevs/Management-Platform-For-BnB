@@ -1,0 +1,194 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - Skeppsgarden.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/custom/notification.css" asp-append-version="true"/>
+    <!-- Load font awesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css">
+    
+</head>
+<body>
+<header>
+    <nav id="navbar" class="navbar navbar-custom navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow">
+        <div class="container-fluid">
+            <p class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/site/Logo.png" alt="Skeppsgarden Logo" class="d-inline-block align-text-top">
+            </p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1 d-flex">
+                    <li class="nav-item navbar-buttons">
+                        <a class="nav-link custom-underline" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item navbar-buttons">
+                        <a class="nav-link custom-underline" asp-area="" asp-controller="Rooms" asp-action="ListAllRooms">Rooms</a>
+                    </li>
+                    <li class="nav-item navbar-buttons">
+                        <a class="nav-link custom-underline" asp-area="" asp-controller="Booking" asp-action="Index">Booking</a>
+                    </li>
+                    <li class="nav-item navbar-buttons">
+                        <a class="nav-link custom-underline" asp-area="" asp-controller="Restaurant" asp-action="Index">Restaurant</a>
+                    </li>
+                    <li id="activities" class="nav-item navbar-buttons">
+                        <a class="nav-link custom-underline" asp-area="" asp-controller="Activity" asp-action="ListAllActivities">Activities</a>
+                    </li>
+                    <li class="nav-item navbar-buttons">
+                        <a class="nav-link custom-underline" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
+                    </li>
+                    <li class="nav-item navbar-buttons">
+                        <a class="nav-link custom-underline" asp-area="" asp-controller="LocalPlaces" asp-action="GetAllLocalPlaces">Near Us</a>
+                    </li>
+                    <li class="topnav-right">
+                        <button class="navbar-dropdown-button">Contact</button>
+                        <div class="navbar-dropdown-content">
+                            <a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
+                            <a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Index" asp-fragment="get-map">Map</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <a id="nav-bar-notification" class="nav-link">
+                                <i id="notification-icon" class="fa-solid fa-bell" onclick="openNotification()"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="icon-bar">
+        <a title="facebook" href="https://www.facebook.com/" class="facebook" target="_blank">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a title="twitter" href="https://twitter.com/intent/tweet?text=" class="twitter" target="_blank">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a title="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=" class="linkedin" target="_blank">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a title="whatsapp" href="https://api.whatsapp.com/send?text=F" class="whatsapp" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a title="mail" href="mailto:contact@bnb.zzz" class="email">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    </div>
+    <a title="scroll-to-top" href="#navbar" class="scroll-to-top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+</header>
+<div id="body-container" class="container-fluid">
+    <partial name="_CookieConsentPartial"/>
+    <main role="main" class="pb-3">
+        <div id="notification-container" class="Message Message--orange">
+            <div class="Message-body">
+                @await Component.InvokeAsync("RequestNotifications")
+            </div>
+        </div>
+        @RenderBody()
+        <div class="cat-container">
+            <img src="~/images/squirrels/1.png" alt="cat" class="cat">
+            <div class="cat-shadow"></div>
+        </div>
+    </main>
+</div>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Content -->
+            <h5 class="text-uppercase fw-bold">
+                <i id="title-icon" class="fa-solid fa-sailboat"></i>Skeppsgården B&amp;B
+            </h5>
+            <!-- Grid row -->
+            <div class="row mt-3 flex-row justify-content-between">
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2  mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Useful links
+                    </h6>
+                    <p>
+                        <a asp-area="" asp-controller="Rooms" asp-action="ListAllRooms" class="text-reset">Rooms</a>
+                    </p>
+                    <p>
+                        <a asp-area="" asp-controller="Booking" asp-action="Index" class="text-reset">Booking</a>
+                    </p>
+                    <p>
+                        <a asp-area="" asp-controller="" asp-action="" class="text-reset">Events</a>
+                    </p>
+                    <p>
+                        <a asp-area="" asp-controller="Restaurant" asp-action="Index" class="text-reset">Restaurant</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Employee Portal
+                    </h6>
+                    <p>
+                        <a asp-area="Admin" asp-controller="AdminPanel" asp-action="Index" class="text-reset">Employee Panel</a>
+                    </p>
+                    <p>
+                        <a asp-area="Admin" asp-controller="CalendarAdmin" asp-action="Index" class="text-reset">Bookings Calendar</a>
+                    </p>
+                    <div class="footer-row-element text-reset">
+                        <partial name="_LoginPartial"/>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mb-md-0 mb-4 exclude-div">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3"></i> SomeStreet 1, Skeppsgården 123 45 Somewhere</p>
+                    <p><i class="fas fa-phone me-3"></i> +46 (0)123 45 67 89</p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i><a href="mailto:contact@bnb.zzz"> contact@bnb.zzz</a>
+                    </p>
+                    <p>
+                        <i class="fa-brands fa-facebook me-3"></i><a href="https://www.facebook.com/" target="_blank"> @@bnb.zzz</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.3);">
+        Copyright &copy; 2023 - @DateTime.UtcNow.Year - OtakuDevs PLC
+        <a class="text-reset fw-bold" href="https://otakudevs.net">Developer Website</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/qrcode.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

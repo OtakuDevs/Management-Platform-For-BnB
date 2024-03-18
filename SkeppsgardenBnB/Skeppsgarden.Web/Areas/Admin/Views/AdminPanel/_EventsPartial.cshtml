@@ -1,0 +1,88 @@
+@* @model Skeppsgarden.Web.Areas.Admin.ViewModels.EventsListViewModel *@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model X.PagedList.IPagedList<Skeppsgarden.Web.Areas.Admin.ViewModels.EventViewModel>
+
+<link rel="stylesheet" href="~/css/custom/admin-area-events-customization.css">
+
+<div id="statusMessageContainer"></div>
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+
+<button id="add-event-button" form="add-event" type="submit" class="admin-button">Add Event</button>
+
+
+<form id="add-event" action="@Url.Action("AddEvent", "AdminPanel", new { area = "Admin" })" method="get">
+</form>
+
+
+<div class="events-table-wrapper">
+    <table class="events-table">
+        <thead class="events-table-header">
+        <tr class="events-table-row">
+            <th class="events-table-cell">Event Title</th>
+            <th class="events-table-cell">Start [UTC]</th>
+            <th class="events-table-cell">End [UTC]</th>
+            <th class="events-table-cell">Description</th>
+            <th class="events-table-cell">Location</th>
+            <th class="events-table-cell">Image Preview</th>
+            <th class="events-table-cell">Edit</th>
+            <th class="events-table-cell">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var _event in Model)
+        {
+            <tr class="event-table-row">
+                <td class="events-table-cell">@_event.Title</td>
+                <td class="events-table-cell">@_event.Start.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td class="events-table-cell">@_event.End.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td class="events-table-cell" data-max-chars="300">@_event.Description</td>
+                <td class="events-table-cell">@_event.Location</td>
+                <td class="events-table-cell image-preview" data-image="@_event.Image">
+                    @if (!string.IsNullOrEmpty(_event.Image))
+                    {
+                        <img src="@Url.Content(_event.Image)" alt="Event Image" width="150" height="100"/>
+                    }
+                </td>
+                <td class="events-table-cell">
+                    <form method="get" action="/Admin/AdminPanel/EditEvent">
+                        <input type="hidden" name="id" value="@_event.Id"/>
+                        <button type="submit" class="btn edit-event-button">Edit</button>
+                    </form>
+                </td>
+                <td class="events-table-cell">
+                    <form method="post" action="/Admin/AdminPanel/DeleteEvent">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@_event.Id"/>
+                        <button type="submit" class="btn delete-event-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@*Pagination with X.PagedList*@
+<div id="paginationContainer" data-url="@Url.Action("Events", "AdminPanel", new { area = "Admin" })">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            @Html.PagedListPager(Model, page =>
+            {
+                if (page == 1)
+                    return Url.Action("Events");
+                else
+                    return Url.Action("Events", new { page });
+            }, new PagedListRenderOptions
+            {
+                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                ContainerDivClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+            })
+        </ul>
+    </nav>
+</div>
